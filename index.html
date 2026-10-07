@@ -1,0 +1,1018 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Hoja de Ruta</title>
+<meta name="description" content="Hoja de Ruta: planificación de redes para comités y coordinadoras.">
+<meta name="theme-color" content="#004F9E">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Hoja de Ruta">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=League+Gothic&display=swap">
+<style>
+:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<style>
+/* Layout: app de una columna para el teléfono; franja azul arriba, barra de pestañas fija abajo,
+   y cada pieza como una fila con el día en grande, como una agenda de militancia. */
+:root{
+  --bg:#F3F0E3; --surface:#FCFBF5; --ink:#0B2545; --muted:#56637A; --line:#D8D3BE;
+  --band:#004F9E; --on-band:#F3F0E3;
+  --accent:#004F9E; --on-accent:#F3F0E3;
+  --rojo:#ED1940; --amarillo:#FEC10D; --on-amarillo:#0B2545;
+  --pub-bg:#004F9E; --pub-fg:#F3F0E3;
+  --display:"League Gothic","Oswald","Arial Narrow",Impact,sans-serif;
+  --body:"Golos Text",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#05264B; --surface:#0A3566; --ink:#F3F0E3; --muted:#A8BAD3; --line:#1D4C85;
+  --band:#031A36; --on-band:#F3F0E3;
+  --accent:#FEC10D; --on-accent:#05264B;
+  --rojo:#FF5C78; --amarillo:#FEC10D; --on-amarillo:#05264B;
+  --pub-bg:#F3F0E3; --pub-fg:#05264B; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#05264B; --surface:#0A3566; --ink:#F3F0E3; --muted:#A8BAD3; --line:#1D4C85;
+  --band:#031A36; --on-band:#F3F0E3;
+  --accent:#FEC10D; --on-accent:#05264B;
+  --rojo:#FF5C78; --amarillo:#FEC10D; --on-amarillo:#05264B;
+  --pub-bg:#F3F0E3; --pub-fg:#05264B; color-scheme:dark }
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.45;padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--amarillo);outline-offset:2px}
+h1,h2,h3{font-family:var(--display);font-weight:400;text-transform:uppercase;letter-spacing:.02em;line-height:1;margin:0;text-wrap:balance}
+
+.band{background:var(--band);color:var(--on-band);padding:14px 16px 12px;position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+.band h1{font-size:30px;min-width:0}
+.band>div:first-child{min-width:0;flex:1}
+.band{flex-direction:column;align-items:stretch;gap:2px}
+#h_resumen{text-align:left;opacity:.85}
+#h_perfil{font-family:var(--display);font-size:28px;text-transform:uppercase;letter-spacing:.02em;line-height:1.1;background:transparent;color:var(--on-band);border:0;border-bottom:2px solid var(--on-band);border-radius:0;padding:2px 0;width:auto;max-width:100%}
+#h_perfil option{font-family:var(--body);font-size:16px;text-transform:none;letter-spacing:0;background:var(--surface);color:var(--ink)}
+.band .sub{font-size:13px;opacity:.85}
+.band .logo{display:block;height:38px;width:auto;max-width:100%;margin-bottom:8px}
+.hr0,.hr4{fill:#004F9E}.hr1,.hr3{fill:#F3F0E3}.hr2{fill:#ED1940}.hr5{fill:#FEC10D}
+.wrap{max-width:720px;margin:0 auto;padding-inline:16px;padding-block:16px;display:flex;flex-direction:column;gap:18px}
+.aviso{background:var(--amarillo);color:var(--on-amarillo);padding:10px 12px;font-size:14px;border-radius:6px}
+.sec-t{font-size:24px;display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+.sec-t small{font-family:var(--body);text-transform:none;letter-spacing:0;font-size:13px;color:var(--muted)}
+.grupo{display:flex;flex-direction:column;gap:8px}
+.vacio{color:var(--muted);font-size:15px;padding:14px 0;border-top:1px solid var(--line)}
+
+.fila{display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:12px;align-items:center;width:100%;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.fila .dia{font-family:var(--display);font-size:38px;line-height:.9;text-align:center;font-variant-numeric:tabular-nums}
+.fila .dia span{display:block;font-family:var(--body);font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-top:4px}
+.fila .tit{font-weight:600;overflow-wrap:anywhere}
+.fila .meta{font-size:13px;color:var(--muted)}
+.fila.tarde .dia{color:var(--rojo)}
+.pill{font-size:12px;font-weight:600;padding:3px 9px;border-radius:999px;border:1.5px solid var(--line);white-space:nowrap;color:var(--muted)}
+.pill.listo{background:var(--amarillo);border-color:var(--amarillo);color:var(--on-amarillo)}
+.pill.publicado{background:var(--pub-bg);border-color:var(--pub-bg);color:var(--pub-fg)}
+
+.btn{background:var(--accent);color:var(--on-accent);border:0;border-radius:8px;padding:11px 16px;font-weight:600}
+.btn.sec{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+.btn.mini{padding:6px 10px;font-size:13px}
+.btn.peligro{background:transparent;color:var(--rojo);border:1.5px solid var(--rojo)}
+.btn[disabled]{opacity:.5;cursor:default}
+.fila-btn{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+
+.mesnav{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.mesnav h2{font-size:34px}
+.mesnav button{background:transparent;border:1.5px solid var(--line);border-radius:8px;width:44px;height:44px;font-size:20px}
+.cal{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.cal .dn{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);text-align:center}
+.cal button{background:var(--surface);border:1px solid var(--line);border-radius:6px;min-height:46px;padding:4px 2px;display:flex;flex-direction:column;align-items:center;gap:4px;font-variant-numeric:tabular-nums;font-size:14px}
+.cal button.hoy{border:2px solid var(--rojo);font-weight:700}
+.cal .pts{display:flex;gap:3px;flex-wrap:wrap;justify-content:center}
+.cal .pts i{width:7px;height:7px;border-radius:50%;background:transparent;border:1.5px solid var(--muted)}
+.cal .pts i.listo{background:var(--amarillo);border-color:var(--amarillo)}
+.cal .pts i.publicado{background:var(--pub-bg);border-color:var(--pub-bg)}
+
+.caja{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px;display:flex;flex-direction:column;gap:10px}
+.caja h3{font-size:22px}
+.caja p{margin:0;font-size:14px;color:var(--muted)}
+label.campo{display:flex;flex-direction:column;gap:4px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);min-width:0}
+label.campo>*:not(span){text-transform:none;letter-spacing:0;font-weight:400;font-size:16px;color:var(--ink)}
+input,select,textarea{background:var(--bg);border:1.5px solid var(--line);border-radius:6px;padding:9px 10px;width:100%;min-width:0}
+textarea{resize:vertical;line-height:1.45}
+.dos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.cab{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.nota{font-size:13px;color:var(--muted)}
+.err{color:var(--rojo);font-size:14px}
+
+.estado{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.estado button{background:transparent;border:1.5px solid var(--line);border-radius:8px;padding:10px 4px;font-weight:600;font-size:14px}
+.estado button[aria-pressed="true"].pendiente{border-color:var(--ink)}
+.estado button[aria-pressed="true"].listo{background:var(--amarillo);border-color:var(--amarillo);color:var(--on-amarillo)}
+.estado button[aria-pressed="true"].publicado{background:var(--pub-bg);border-color:var(--pub-bg);color:var(--pub-fg)}
+
+#detalle{position:fixed;inset:0;background:var(--bg);z-index:20;overflow:auto;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+#detalle .top{background:var(--band);color:var(--on-band);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px;position:sticky;top:0;z-index:2}
+#detalle .top h2{font-size:26px}
+#detalle .top button{background:transparent;border:1.5px solid var(--on-band);color:var(--on-band);border-radius:8px;padding:8px 12px;font-weight:600}
+
+.chat{display:flex;flex-direction:column;gap:10px}
+.msg{max-width:88%;padding:10px 12px;border-radius:10px;white-space:pre-wrap;overflow-wrap:anywhere;font-size:15px}
+.msg.user{align-self:flex-end;background:var(--accent);color:var(--on-accent)}
+.msg.assistant{align-self:flex-start;background:var(--surface);border:1px solid var(--line)}
+.envio{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:end}
+.sug{display:flex;flex-wrap:wrap;gap:6px}
+.sug button{background:transparent;border:1.5px solid var(--line);border-radius:999px;padding:6px 12px;font-size:13px}
+
+nav.tabs{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding-bottom:env(safe-area-inset-bottom,0px);z-index:10}
+nav.tabs button{background:transparent;border:0;border-top:4px solid transparent;padding:12px 4px 14px;font-family:var(--display);text-transform:uppercase;font-size:21px;letter-spacing:.03em;color:var(--muted)}
+nav.tabs button[aria-selected="true"]{color:var(--ink);border-top-color:var(--rojo)}
+#toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(92px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);padding:8px 14px;border-radius:999px;font-size:14px;z-index:30}
+.seg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+.seg button{background:transparent;border:1.5px solid var(--line);border-radius:8px;padding:9px 4px;font-weight:600;font-size:14px;color:var(--muted)}
+.seg button[aria-pressed="true"]{border-color:var(--ink);color:var(--ink)}
+.fila .quien{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--accent)}
+.efem{display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:10px;align-items:center;padding:8px 0;border-top:1px solid var(--line);font-size:15px}
+.efem b{font-family:var(--display);font-weight:400;font-size:24px;line-height:1;text-align:center;font-variant-numeric:tabular-nums}
+.efem span{overflow-wrap:anywhere}
+.var{border:1px solid var(--line);border-radius:8px;padding:10px;display:flex;flex-direction:column;gap:8px;background:var(--bg)}
+.var b{font-size:12px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+.var .vtxt{white-space:pre-wrap;overflow-wrap:anywhere;font-size:15px}
+.regla{border-top:1px solid var(--line);padding-top:12px;display:flex;flex-direction:column;gap:10px}
+.tres{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+</style>
+
+<header class="band">
+  <div>
+    <svg class="logo" viewBox="0 0 28682.38 6395.58" role="img" aria-label="Hoja de Ruta, planificación de redes" fill-rule="evenodd" clip-rule="evenodd"><g>
+  
+  <polygon class="hr0" points="6242.12,2189.89 132.85,2189.89 132.85,4226.31 6242.12,4226.31 "/>
+  <path class="hr1" d="M6242.12 4226.31l-6109.27 0 0 827.3c0,665.02 544.1,1209.12 1209.12,1209.12l3691.02 0c665.02,0 1209.12,-544.1 1209.12,-1209.12l0 -827.3z"/>
+  <path class="hr2" d="M132.85 2189.89l6109.27 0 0 -827.3c0,-665.02 -544.1,-1209.12 -1209.12,-1209.12l-3691.02 0c-665.02,0 -1209.12,544.1 -1209.12,1209.12l0 827.3z"/>
+  <path class="hr3" d="M5032.99 20.62c369.18,0 704.72,150.93 947.87,394.1 243.16,243.16 394.1,578.7 394.1,947.87l0 3691.02c0,369.18 -150.93,704.72 -394.1,947.87 -243.16,243.16 -578.7,394.1 -947.87,394.1l-3691.02 0c-369.18,0 -704.72,-150.94 -947.87,-394.1 -243.16,-243.16 -394.1,-578.7 -394.1,-947.87l0 -3691.02c0,-369.18 150.93,-704.72 394.1,-947.87 243.16,-243.16 578.7,-394.1 947.87,-394.1l3691.02 0zm760.01 581.96c-195.13,-195.14 -464.18,-316.26 -760.01,-316.26l-3691.02 0c-295.83,0 -564.88,121.12 -760.01,316.26 -195.14,195.13 -316.26,464.18 -316.26,760.01l0 3691.02c0,295.83 121.12,564.88 316.26,760.01 195.13,195.13 464.18,316.26 760.01,316.26l3691.02 0c295.83,0 564.88,-121.13 760.01,-316.26 195.14,-195.13 316.26,-464.18 316.26,-760.01l0 -3691.02c0,-295.83 -121.12,-564.88 -316.26,-760.01z"/>
+  <g>
+   <path class="hr4" d="M5055.94 3441.4c158.23,199.09 252.78,450.51 252.78,723.46 0,321.54 -130.35,612.65 -341.09,823.39 -210.74,210.74 -501.85,341.09 -823.39,341.09 -276.28,0 -530.41,-96.83 -730.42,-258.49 -147.9,-119.54 -265.95,-274.46 -341.29,-451.83l-1508.64 0c-137.38,0 -261.8,-55.72 -351.86,-145.78 -90.06,-90.06 -145.78,-214.46 -145.78,-351.85l0 -2203.46c0,-137.39 55.72,-261.8 145.78,-351.85 90.06,-90.06 214.48,-145.78 351.86,-145.78l69.29 0c8.12,-87.07 47.32,-165.87 106.54,-225.3l-0.52 -0.52c66.44,-66.44 158.25,-107.59 259.57,-107.59l86.98 0c101.3,0 193.14,41.16 259.58,107.59l-0.52 0.52c59.22,59.44 98.42,138.23 106.54,225.3l776.4 0c8.02,-87.87 47.07,-166.84 106.05,-225.82 66.44,-66.44 158.25,-107.59 259.57,-107.59l86.98 0c101.3,0 193.14,41.16 259.58,107.59l-0.52 0.52c59.22,59.44 98.42,138.23 106.54,225.3l69.29 0c137.38,0 261.79,55.72 351.86,145.78 90.06,90.06 145.78,214.48 145.78,351.85l0 1181.67c174.4,76.77 326.26,194.85 443.05,341.81zm-1780.9 -50.13c6.57,-7.38 13.23,-14.67 19.98,-21.87 -19.81,-10.68 -38.82,-22.66 -56.89,-35.85 13.57,18.31 25.92,37.6 36.91,57.72zm-1159.32 237.23c3.14,4.6 8.81,18.53 9.7,23.77l23.77 -23.77 -33.47 0zm690.37 0c3.14,4.6 8.81,18.53 9.7,23.78l23.78 -23.78 -33.48 0zm33.48 0l23.78 -23.78c-5.25,-0.89 -19.18,-6.56 -23.78,-9.7l0 33.48zm656.91 -695.82c3.14,4.6 8.81,18.53 9.7,23.77l23.77 -23.77 -33.47 0zm-1380.75 0c3.14,4.6 8.8,18.53 9.69,23.77l23.77 -23.77 -33.46 0zm385.22 -700.59l677.26 0c-57.46,-79.42 -92.72,-175.94 -96.59,-280.41l-484.07 0c-3.88,104.44 -39.14,200.98 -96.59,280.41z"/>
+   <path class="hr5" d="M5043.02 4164.86c0,-426.54 -297.24,-783.44 -695.83,-875.49 -65.26,-15.05 -133.11,-23.28 -202.95,-23.28 -19.51,0 -38.79,0.84 -57.98,2.06 -435.56,27.77 -786.63,365.6 -834.93,795.24 -3.75,33.31 -5.86,67.14 -5.86,101.47 0,64.66 6.98,127.66 19.94,188.46 86.64,405.87 447.1,710.32 878.83,710.32 496.39,0 898.78,-402.39 898.78,-898.78zm-2663.69 -536.37c0,-127.1 -103.04,-230.14 -230.14,-230.14 -127.1,0 -230.14,103.04 -230.14,230.14 0,127.1 103.04,230.14 230.14,230.14 127.1,0 230.14,-103.04 230.14,-230.14zm690.38 0c0,-127.1 -103.04,-230.14 -230.14,-230.14 -127.11,0 -230.14,103.04 -230.14,230.14 0,127.1 103.04,230.14 230.14,230.14 127.1,0 230.14,-103.04 230.14,-230.14zm690.39 -695.82c0,-127.11 -103.04,-230.15 -230.14,-230.15 -127.11,0 -230.15,103.04 -230.15,230.15 0,127.1 103.04,230.14 230.15,230.14 127.1,0 230.14,-103.04 230.14,-230.14zm-690.38 0c0,-127.11 -103.04,-230.15 -230.14,-230.15 -127.11,0 -230.15,103.04 -230.15,230.15 0,127.1 103.04,230.14 230.15,230.14 127.1,0 230.14,-103.04 230.14,-230.14zm-690.38 0c0,-127.11 -103.04,-230.15 -230.14,-230.15 -127.11,0 -230.15,103.04 -230.15,230.15 0,127.1 103.04,230.14 230.15,230.14 127.1,0 230.14,-103.04 230.14,-230.14zm-815.46 1420.64l1435.14 0c-14.15,-70.34 -21.66,-143.02 -21.66,-217.44 0,-24.38 1.08,-48.5 2.64,-72.48l-1213.17 0c-96.08,0 -173.96,-77.88 -173.96,-173.96l0 -1391.66 2493.38 0 0 537.91c19.19,-0.99 38.53,-1.53 57.98,-1.53 69.35,0 137.11,6.73 202.95,19.04l0 -1135.27c0,-128.1 -103.85,-231.95 -231.94,-231.95l-188.45 0 0 246.44c0,135.89 -110.55,246.45 -246.45,246.45l-86.98 0c-135.89,0 -246.45,-110.56 -246.45,-246.45l0 -246.44 -1014.74 0 0 246.44c0,135.89 -110.55,246.45 -246.44,246.45l-86.98 0c-135.89,0 -246.44,-110.56 -246.44,-246.45l0 -246.44 -188.45 0c-128.09,0 -231.94,103.85 -231.94,231.95l0 2203.45c0,128.09 103.85,231.95 231.94,231.95zm2029.5 -3000.75c-55.96,0 -101.47,45.52 -101.47,101.47l0 231.95 0 246.44c0,55.96 45.52,101.48 101.47,101.48l86.98 0c55.96,0 101.48,-45.52 101.48,-101.48l0 -246.44 0 -231.95c0,-55.95 -45.52,-101.47 -101.48,-101.47l-86.98 0zm-1594.6 0c-55.96,0 -101.47,45.52 -101.47,101.47l0 231.95 0 246.44c0,55.96 45.51,101.48 101.47,101.48l86.98 0c55.96,0 101.47,-45.52 101.47,-101.48l0 -246.44 0 -231.95c0,-55.95 -45.51,-101.47 -101.48,-101.47l-86.98 0zm2261.44 2406.4l-202.95 0 0 318.92 -318.92 0 0 202.95 521.87 0 0 -202.95 0 -318.92zm-115.98 1000.26c-328.25,0 -594.35,-266.1 -594.35,-594.36 0,-328.25 266.1,-594.35 594.35,-594.35 328.26,0 594.36,266.1 594.36,594.35 0,328.26 -266.1,594.36 -594.36,594.36z"/>
+  </g>
+  <path class="hr3" d="M7275.7 4316.77l0 -4270.29 627.48 0 0 1766.21 488.03 0 0 -1766.21 627.47 0 0 4270.29 -627.47 0 0 -1859.18 -488.03 0 0 1859.18 -627.48 0zm33.56 2036.86l0 -1148.65 467.66 0c107.21,0 195.27,15.58 264.19,46.77 68.92,31.17 120.06,76.02 153.43,134.55 33.36,58.52 50.05,128.82 50.05,210.86 0,80.95 -16.69,150.96 -50.05,210.05 -33.37,59.06 -84.51,104.19 -153.43,135.36 -68.92,31.17 -156.99,46.77 -264.19,46.77l-172.3 0 0 364.29 -295.36 0zm295.36 -607.15l139.49 0c75.48,0 128.54,-12.57 159.16,-37.73 30.63,-25.17 45.96,-62.36 45.96,-111.59 0,-49.23 -15.32,-86.43 -45.96,-111.58 -30.61,-25.17 -83.67,-37.75 -159.16,-37.75l-139.49 0 0 298.64zm804.05 607.15l0 -1148.65 295.37 0 0 905.78 492.29 0 0 242.87 -787.65 0zm868.07 0l420.07 -1148.65 295.38 0 418.42 1148.65 -311.77 0 -78.76 -219.89 -383.98 0 -78.77 219.89 -280.59 0zm443.05 -446.33l216.6 0 -108.3 -341.33 -108.3 341.33zm822.1 446.33l0 -1148.65 260.92 0 444.68 639.95 0 -639.95 311.78 0 0 1148.65 -278.96 0 -443.05 -639.97 0 639.97 -295.37 0zm1263.52 0l0 -1148.65 295.37 0 0 1148.65 -295.37 0zm541.49 0l0 -1148.65 812.26 0 0 226.45 -516.9 0 0 265.83 467.68 0 0 213.32 -467.68 0 0 443.05 -295.37 0zm992.77 0l0 -1148.65 295.37 0 0 1148.65 -295.37 0zm1033.78 21.33c-105.02,0 -197.74,-19.42 -278.14,-58.25 -80.41,-38.83 -143.04,-101.46 -187.89,-187.89 -44.85,-86.42 -67.27,-200.75 -67.27,-342.96l0 -31.17c0,-100.65 13.66,-187.06 41.02,-259.27 27.35,-72.2 65.37,-131.28 114.05,-177.22 48.67,-45.95 105.29,-79.85 169.83,-101.74 64.54,-21.87 134.02,-32.82 208.41,-32.82 66.72,0 129.63,7.67 188.7,22.98 59.08,15.31 110.77,39.38 155.07,72.2 44.31,32.82 80.14,75.48 107.49,128 27.33,52.5 43.75,116.49 49.22,191.98l-306.85 0c-9.84,-60.16 -32.82,-103.38 -68.92,-129.63 -36.1,-26.24 -77.67,-39.38 -124.7,-39.38 -43.77,0 -82.87,10.67 -117.34,32 -34.45,21.34 -61.53,55.53 -81.22,102.56 -19.7,47.03 -29.54,110.49 -29.54,190.34l0 34.47c0,63.44 6.02,117.05 18.05,160.81 12.03,43.75 28.71,78.77 50.05,105.02 21.33,26.26 45.67,45.12 73.02,56.61 27.35,11.49 56.34,17.23 86.98,17.23 55.78,0 100.36,-13.4 133.74,-40.21 33.36,-26.8 53.32,-69.73 59.89,-128.81l306.85 0c-4.37,76.57 -19.97,141.39 -46.76,194.45 -26.8,53.05 -62.37,95.72 -106.67,128 -44.3,32.27 -95.99,55.78 -155.07,70.56 -59.06,14.77 -123.06,22.15 -191.98,22.15zm539.86 -21.33l420.07 -1148.65 295.38 0 418.42 1148.65 -311.77 0 -78.76 -219.89 -383.98 0 -78.77 219.89 -280.59 0zm443.05 -446.33l216.6 0 -108.3 -341.33 -108.3 341.33zm1281.57 467.66c-105.02,0 -197.75,-19.42 -278.14,-58.25 -80.41,-38.83 -143.04,-101.46 -187.89,-187.89 -44.85,-86.42 -67.27,-200.75 -67.27,-342.96l0 -31.17c0,-100.65 13.66,-187.06 41.02,-259.27 27.35,-72.2 65.37,-131.28 114.05,-177.22 48.67,-45.95 105.29,-79.85 169.83,-101.74 64.54,-21.87 134.02,-32.82 208.41,-32.82 66.72,0 129.63,7.67 188.7,22.98 59.08,15.31 110.77,39.38 155.07,72.2 44.3,32.82 80.14,75.48 107.49,128 27.33,52.5 43.75,116.49 49.22,191.98l-306.86 0c-9.84,-60.16 -32.82,-103.38 -68.91,-129.63 -36.1,-26.24 -77.67,-39.38 -124.7,-39.38 -43.77,0 -82.87,10.67 -117.34,32 -34.45,21.34 -61.53,55.53 -81.22,102.56 -19.7,47.03 -29.54,110.49 -29.54,190.34l0 34.47c0,63.44 6.02,117.05 18.05,160.81 12.03,43.75 28.71,78.77 50.04,105.02 21.34,26.26 45.67,45.12 73.03,56.61 27.35,11.49 56.34,17.23 86.98,17.23 55.78,0 100.36,-13.4 133.73,-40.21 33.36,-26.8 53.33,-69.73 59.89,-128.81l306.86 0c-4.37,76.57 -19.97,141.39 -46.77,194.45 -26.8,53.05 -62.36,95.72 -106.66,128 -44.3,32.27 -95.99,55.78 -155.07,70.56 -59.06,14.77 -123.06,22.15 -191.97,22.15zm689.19 -21.33l0 -1148.65 295.37 0 0 1148.65 -295.37 0zm1058.39 21.33c-74.39,0 -145.49,-10.93 -213.32,-32.82 -67.83,-21.87 -127.45,-56.34 -178.85,-103.38 -51.43,-47.03 -91.9,-108.03 -121.44,-182.96 -29.54,-74.94 -44.29,-164.37 -44.29,-268.3l0 -32.82c0,-100.65 14.75,-187.06 44.29,-259.27 29.54,-72.2 70.02,-131.28 121.44,-177.22 51.41,-45.95 111.03,-79.85 178.85,-101.74 67.83,-21.87 138.93,-32.82 213.32,-32.82 76.58,0 148.22,10.95 214.96,32.82 66.73,21.89 125.81,55.8 177.22,101.74 51.41,45.94 91.9,105.02 121.42,177.22 29.54,72.2 44.31,158.62 44.31,259.27l0 32.82c0,103.93 -14.77,193.36 -44.31,268.3 -29.53,74.93 -70.01,135.92 -121.42,182.96 -51.41,47.03 -110.49,81.5 -177.22,103.38 -66.74,21.89 -138.38,32.82 -214.96,32.82zm-1.65 -246.14c44.86,0 86.43,-10.12 124.72,-30.35 38.29,-20.24 69.19,-54.71 92.71,-103.39 23.51,-48.67 35.27,-117.88 35.27,-207.57l0 -32.82c0,-85.32 -11.76,-151.52 -35.27,-198.55 -23.52,-47.03 -54.42,-79.85 -92.71,-98.46 -38.29,-18.59 -79.86,-27.89 -124.72,-27.89 -42.66,0 -83.14,9.31 -121.42,27.89 -38.29,18.61 -69.46,51.43 -93.53,98.46 -24.07,47.03 -36.1,113.23 -36.1,198.55l0 32.82c0,89.7 12.03,158.91 36.1,207.57 24.07,48.68 55.24,83.15 93.53,103.39 38.29,20.23 78.77,30.35 121.42,30.35zm-106.65 -1005.89l180.5 -246.13 278.95 0 -246.13 246.13 -213.32 0zm854.92 1230.7l0 -1148.65 260.91 0 444.68 639.95 0 -639.95 311.79 0 0 1148.65 -278.97 0 -443.05 -639.97 0 639.97 -295.37 0zm1657.33 0l0 -1148.65 434.85 0c114.87,0 213.31,20.78 295.37,62.35 82.05,41.57 144.94,103.1 188.7,184.61 43.77,81.5 65.64,182.42 65.64,302.75l0 32.82c0,122.52 -22.42,225.91 -67.27,310.14 -44.84,84.23 -109.66,147.95 -194.44,191.17 -84.79,43.22 -186.26,64.82 -304.4,64.82l-418.44 0zm295.37 -242.87l106.66 0c50.32,0 95.99,-10.38 137.02,-31.17 41.02,-20.79 74.66,-54.97 100.92,-102.56 26.24,-47.57 39.38,-110.75 39.38,-189.52l0 -32.82c0,-74.39 -11.76,-134 -35.28,-178.85 -23.53,-44.86 -54.97,-77.4 -94.35,-97.64 -39.38,-20.24 -83.15,-30.36 -131.28,-30.36l-123.07 0 0 662.93zm877.9 242.87l0 -1148.65 836.87 0 0 226.45 -541.51 0 0 224.8 492.29 0 0 213.33 -492.29 0 0 257.63 541.51 0 0 226.45 -836.87 0zm1435.81 0l0 -1148.65 500.48 0c96.27,0 176.39,15.85 240.4,47.58 63.99,31.72 112.41,76.04 145.22,132.91 32.82,56.89 49.23,124.72 49.23,203.48 0,82.05 -19.41,152.33 -58.25,210.87 -38.84,58.53 -97.08,101.46 -174.77,128.81l265.84 425 -328.19 0 -223.16 -393.83 -121.44 0 0 393.83 -295.37 0zm295.37 -623.55l139.49 0c78.76,0 132.63,-11.76 161.63,-35.28 28.98,-23.51 43.48,-58.81 43.48,-105.85 0,-47.03 -14.5,-82.31 -43.48,-105.84 -29,-23.52 -82.87,-35.28 -161.63,-35.28l-139.49 0 0 282.24zm845.08 623.55l0 -1148.65 836.87 0 0 226.45 -541.51 0 0 224.8 492.29 0 0 213.33 -492.29 0 0 257.63 541.51 0 0 226.45 -836.87 0zm1025.58 0l0 -1148.65 434.86 0c114.86,0 213.31,20.78 295.37,62.35 82.04,41.57 144.94,103.1 188.7,184.61 43.77,81.5 65.64,182.42 65.64,302.75l0 32.82c0,122.52 -22.42,225.91 -67.27,310.14 -44.85,84.23 -109.67,147.95 -194.45,191.17 -84.78,43.22 -186.25,64.82 -304.4,64.82l-418.44 0zm295.37 -242.87l106.67 0c50.32,0 95.99,-10.38 137.02,-31.17 41.01,-20.79 74.65,-54.97 100.91,-102.56 26.24,-47.57 39.38,-110.75 39.38,-189.52l0 -32.82c0,-74.39 -11.76,-134 -35.28,-178.85 -23.53,-44.86 -54.97,-77.4 -94.35,-97.64 -39.38,-20.24 -83.15,-30.36 -131.28,-30.36l-123.07 0 0 662.93zm877.9 242.87l0 -1148.65 836.87 0 0 226.45 -541.51 0 0 224.8 492.29 0 0 213.33 -492.29 0 0 257.63 541.51 0 0 226.45 -836.87 0zm1460.44 21.33c-107.21,0 -196.37,-14.21 -267.48,-42.66 -71.11,-28.44 -124.43,-68.65 -159.99,-120.61 -35.54,-51.96 -54.42,-114.04 -56.61,-186.24l295.37 0c8.75,41.57 27.89,71.93 57.43,91.07 29.54,19.14 73.29,28.71 131.28,28.71 62.35,0 109.11,-8.75 140.3,-26.26 31.17,-17.5 46.76,-44.31 46.76,-80.41 0,-29.53 -10.12,-53.05 -30.36,-70.55 -20.24,-17.52 -51.14,-32.27 -92.71,-44.31 -41.57,-12.03 -91.35,-24.61 -149.33,-37.74 -75.48,-17.51 -140.57,-40.21 -195.27,-68.1 -54.69,-27.9 -96.81,-65.37 -126.35,-112.4 -29.53,-47.05 -44.29,-107.77 -44.29,-182.15 0,-72.2 18.32,-133.45 54.96,-183.78 36.65,-50.32 88.89,-88.87 156.71,-115.68 67.83,-26.8 147.69,-40.21 239.58,-40.21 100.63,0 184.05,13.14 250.23,39.38 66.2,26.26 116.51,64.01 150.96,113.23 34.47,49.23 53.88,109.39 58.26,180.51l-295.37 0c-6.56,-35.01 -22.42,-60.98 -47.59,-77.94 -25.15,-16.96 -63.99,-25.43 -116.49,-25.43 -57.99,0 -98.46,9.29 -121.44,27.89 -22.97,18.59 -34.45,42.66 -34.45,72.2 0,40.47 21.06,70.01 63.17,88.6 42.12,18.61 103.1,35.56 182.97,50.87 59.06,12.04 112.95,26.82 161.63,44.31 48.68,17.5 90.25,39.93 124.7,67.27 34.47,27.35 61,61 79.59,100.92 18.61,39.93 27.89,88.89 27.89,146.87 0,75.48 -19.14,140.3 -57.43,194.45 -38.29,54.16 -93.54,95.72 -165.73,124.7 -72.2,28.99 -159.17,43.49 -260.9,43.49zm-17907.22 -2011.72c-174.3,0 -323.42,-40.66 -448.33,-122.01 -124.92,-81.34 -220.79,-191.74 -287.59,-331.16 -66.8,-139.44 -100.71,-296.31 -100.71,-470.61l0 -2515.7c0,-176.24 33.9,-334.07 100.71,-472.54 66.81,-138.46 162.68,-247.88 287.59,-329.22 124.91,-81.34 274.03,-122.01 448.33,-122.01 174.3,0 324.38,40.67 449.3,122.01 124.91,81.34 220.78,191.73 287.59,331.17 66.82,139.43 99.74,296.31 99.74,470.59l0 2515.7c0,174.3 -32.91,331.17 -99.74,470.61 -66.81,139.42 -162.68,249.83 -287.59,331.16 -124.92,81.34 -274.99,122.01 -449.3,122.01zm0 -610.04c77.46,0 131.69,-32.93 162.68,-97.8 30.98,-64.88 46.48,-136.54 46.48,-215.94l0 -2515.7c0,-79.39 -16.47,-152.02 -49.39,-216.9 -32.93,-64.88 -86.18,-96.83 -159.78,-96.83 -71.66,0 -123.95,31.95 -157.84,96.83 -33.9,64.88 -51.32,137.51 -51.32,216.9l0 2515.7c0,79.4 16.46,151.07 49.39,215.94 32.93,64.88 86.18,97.8 159.77,97.8zm1074.84 604.22l0 -615.85c27.11,3.88 47.46,5.81 61.02,5.81 87.15,0 154.93,-28.09 203.34,-83.27 48.42,-55.2 72.62,-133.64 72.62,-236.28l0 -3381.37 627.48 0 0 3480.13c0,183.98 -32.93,337.96 -99.74,461.9 -66.82,123.94 -164.62,216.9 -292.44,278.87 -127.82,61.97 -282.75,92.97 -464.79,92.97 -17.44,0 -34.87,0 -52.29,0 -17.44,0 -35.84,-0.98 -55.2,-2.91zm1298.53 -40.66l644.89 -4270.29 766.9 0 644.91 4270.29 -610.06 0 -116.2 -871.49 -604.23 0 -116.2 871.49 -610.04 0zm813.39 -1533.82l429.92 0 -180.09 -1435.05 -17.44 -226.58 -34.86 0 -17.44 226.58 -180.09 1435.05zm2472.11 1533.82l0 -4270.29 639.1 0c201.41,0 371.83,32.91 511.26,98.76 139.44,65.85 251.77,178.18 336.97,336.97 85.22,158.81 147.19,376.68 184.95,653.62 37.77,276.94 56.16,626.5 56.16,1048.7 0,424.12 -18.39,773.69 -56.16,1049.66 -37.76,275.96 -99.73,492.86 -184.95,650.71 -85.2,157.84 -197.53,269.2 -336.97,334.07 -139.43,64.88 -309.85,97.8 -511.26,97.8l-639.1 0zm627.48 -627.48c154.93,0 264.35,-61 328.26,-183 63.91,-122.01 102.64,-296.31 116.2,-522.9 13.56,-226.58 20.34,-495.78 20.34,-807.57 0,-315.68 -6.78,-585.84 -20.34,-809.53 -13.56,-223.67 -52.28,-395.07 -117.16,-514.17 -64.89,-119.1 -174.3,-178.18 -327.3,-178.18l0 3015.35zm1533.82 627.48l0 -4270.29 1435.07 0 0 644.89 -807.59 0 0 1150.37 581 0 0 627.47 -581 0 0 1202.66 807.59 0 0 644.9 -1435.07 0zm2794.57 0l0 -4270.29 627.48 0c375.71,0 652.65,103.59 830.82,311.79 178.16,208.19 267.25,515.15 267.25,919.91 0,240.14 -41.63,447.36 -125.87,622.62 -84.25,175.27 -186.88,304.05 -306.96,385.39l427.04 2030.57 -627.48 0 -354.41 -1801.07 -110.38 0 0 1801.07 -627.48 0zm627.48 -2382.07c116.2,0 208.19,-26.16 275.96,-77.48 67.79,-51.32 116.21,-123.94 145.26,-218.83 29.05,-94.89 43.57,-207.23 43.57,-336.98 0,-203.34 -32.92,-360.21 -99.73,-469.64 -66.82,-109.41 -188.84,-163.63 -365.06,-163.63l0 1266.56zm2283.3 2428.55c-176.23,0 -326.33,-40.66 -451.24,-122.01 -124.91,-81.34 -220.77,-191.74 -286.61,-331.16 -65.85,-139.44 -98.78,-296.31 -98.78,-470.61l0 -3392.98 627.48 0 0 3392.98c0,83.29 16.46,155.9 49.39,218.85 32.93,62.92 86.18,94.89 159.77,94.89 77.48,0 131.7,-31.97 162.68,-94.89 30.99,-62.95 46.48,-135.56 46.48,-218.85l0 -3392.98 627.47 0 0 3392.98c0,174.3 -32.93,331.17 -99.73,470.61 -66.83,139.42 -162.69,249.83 -287.61,331.16 -124.9,81.34 -274.99,122.01 -449.3,122.01zm1719.74 -46.48l0 -3625.39 -592.61 0 0 -644.89 1812.7 0 0 644.89 -592.62 0 0 3625.39 -627.47 0zm1089.36 0l644.9 -4270.29 766.9 0 644.91 4270.29 -610.06 0 -116.2 -871.49 -604.23 0 -116.2 871.49 -610.04 0zm813.39 -1533.82l429.92 0 -180.09 -1435.05 -17.44 -226.58 -34.86 0 -17.44 226.58 -180.09 1435.05z"/>
+ </g></svg>
+    <h1><select id="h_perfil" aria-label="Perfil que estás manejando"></select></h1>
+    <div class="sub" id="h_fecha"></div>
+  </div>
+  <div class="sub" id="h_resumen"></div>
+</header>
+
+<main class="wrap">
+  <div class="aviso" id="aviso_local" hidden>Estás viendo la app sin conexión con Claude: lo que cargues acá no se guarda. Abrila desde la app de Claude con tu sesión iniciada.</div>
+
+  <section id="v-hoy"></section>
+
+  <section id="v-mes" hidden>
+    <div class="grupo" style="gap:14px">
+      <div class="mesnav">
+        <button type="button" id="mes_prev" aria-label="Mes anterior">‹</button>
+        <h2 id="mes_tit"></h2>
+        <button type="button" id="mes_next" aria-label="Mes siguiente">›</button>
+      </div>
+      <div class="cal" id="cal"></div>
+      <div class="fila-btn"><button type="button" class="btn sec" id="btn_nueva">+ Nueva pieza</button></div>
+      <div id="mes_lote"></div>
+      <div class="caja" id="caja_plan" hidden>
+        <h3 id="plan_tit">Armar el plan con Claude</h3>
+        <p>Contale qué pasa este mes: actividades, fechas, reuniones, temas del barrio. Claude propone las piezas y quedan cargadas en el calendario.</p>
+        <textarea id="plan_notas" rows="3" placeholder="Ej.: reunión todos los jueves 20 h, feria el sábado 14, queremos sumar jóvenes"></textarea>
+        <div class="fila-btn"><button type="button" class="btn" id="btn_plan">Armar plan del mes</button><button type="button" class="btn sec mini" id="btn_plan_stop" hidden>Detener</button><span class="nota" id="plan_estado"></span></div>
+      </div>
+      <div class="grupo" id="lista_mes"></div>
+      <div class="grupo" id="mes_extra" style="gap:14px"></div>
+    </div>
+  </section>
+
+  <section id="v-chat" hidden>
+    <div class="grupo" style="gap:14px">
+      <h2 class="sec-t">Chat con Claude <small>ve tu plan y lo puede cambiar</small></h2>
+      <div class="nota" id="chat_no" hidden>El chat funciona cuando abrís la app desde Claude y le das permiso para usarlo.</div>
+      <div class="chat" id="chat_log"></div>
+      <div class="sug" id="chat_sug">
+        <button type="button">¿Qué tengo que subir esta semana?</button>
+        <button type="button">Sumá una convocatoria para la próxima reunión</button>
+        <button type="button">Dame 3 ideas de reels</button>
+      </div>
+      <form class="envio" id="chat_form">
+        <textarea id="chat_in" rows="2" placeholder="Escribile a Claude…"></textarea>
+        <button type="submit" class="btn" id="chat_send">Enviar</button>
+      </form>
+      <div class="fila-btn"><button type="button" class="btn sec mini" id="chat_stop" hidden>Detener</button><button type="button" class="btn sec mini" id="chat_clear">Borrar conversación</button><span class="err" id="chat_err"></span></div>
+    </div>
+  </section>
+
+  <section id="v-comite" hidden>
+    <div class="grupo" style="gap:14px">
+      <h2 class="sec-t">Datos del perfil <small>Claude los usa para escribir</small></h2>
+      <div class="caja">
+        <div class="dos">
+          <label class="campo"><span>Nombre</span><input id="c_nombre" placeholder="Comité Guaycurú"></label>
+          <label class="campo"><span>Tipo</span><select id="c_tipo"><option value="comite">Comité de base</option><option value="coordinadora">Coordinadora</option><option value="otro">Otro</option></select></label>
+        </div>
+        <label class="campo"><span>Cuenta de Instagram</span><input id="c_ig" placeholder="@cuenta"></label>
+        <label class="campo"><span>Zona</span><input id="c_zona"></label>
+        <div class="dos">
+          <label class="campo"><span>Día y hora de reunión</span><input id="c_reunion" placeholder="Jueves 20 h"></label>
+          <label class="campo"><span>Dirección del local</span><input id="c_local"></label>
+        </div>
+        <label class="campo"><span>Cómo habla</span><textarea id="c_tono" rows="2" placeholder="Cercano, de vecino a vecino, sin tecnicismos"></textarea></label>
+        <label class="campo"><span>Hashtags fijos</span><input id="c_hashtags" placeholder="#ComitéGuaycurú #FrenteAmplio"></label>
+        <label class="campo"><span>Notas para Claude</span><textarea id="c_notas" rows="3" placeholder="Temas que importan, cosas que no decir, quién saca fotos…"></textarea></label>
+        <label class="campo"><span>Posteos de ejemplo</span><textarea id="c_ejemplos" rows="6" placeholder="Pegá acá 3 o 4 posteos reales de esta cuenta, separados por una línea en blanco. Claude imita esa voz."></textarea></label>
+        <span class="nota" id="c_estado"></span>
+      </div>
+      <div class="caja">
+        <h3>Piezas que se repiten</h3>
+        <p>Publicaciones de todas las semanas, como la convocatoria a la reunión. Se cargan solas en el calendario con tres semanas de anticipación cada vez que abrís la app.</p>
+        <div id="reglas" class="grupo" style="gap:14px"></div>
+        <div class="fila-btn"><button type="button" class="btn sec" id="r_nueva">+ Agregar pieza fija</button><button type="button" class="btn sec mini" id="r_crear" hidden>Crear las próximas ahora</button></div>
+      </div>
+      <div class="fila-btn">
+        <button type="button" class="btn peligro" id="p_borrar">Borrar este perfil</button>
+        <span id="p_conf" hidden class="fila-btn"><span>¿Borrar el perfil?</span><button type="button" class="btn peligro mini" id="p_borrar_si">Sí, borrar</button><button type="button" class="btn sec mini" id="p_borrar_no">No</button></span>
+        <span class="nota" id="p_nota"></span>
+      </div>
+      <div class="caja" id="nota_solo" hidden>
+        <h3>Versión instalada</h3>
+        <p>En esta versión los datos se guardan solo en este dispositivo. Escribir con Claude, el chat y los avisos funcionan en la versión que se abre desde Claude.</p>
+      </div>
+      <div class="caja">
+        <h3>Gráficas</h3>
+        <p>Las placas se arman en El Taller con el texto que te deja lista cada pieza.</p>
+        <div class="fila-btn"><a class="btn sec" href="https://alekdrezce.github.io/ELTALLER/" target="_blank" rel="noopener" style="text-decoration:none">Abrir El Taller</a></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="detalle" hidden>
+  <div class="top"><h2>Pieza</h2><button type="button" id="d_cerrar">Cerrar</button></div>
+  <div class="wrap">
+    <div class="estado" id="d_estado">
+      <button type="button" class="pendiente" data-e="pendiente">Pendiente</button>
+      <button type="button" class="listo" data-e="listo">Lista</button>
+      <button type="button" class="publicado" data-e="publicado">Publicada</button>
+    </div>
+    <div class="caja">
+      <label class="campo"><span>Título</span><input id="d_titulo"></label>
+      <div class="dos">
+        <label class="campo"><span>Fecha</span><input type="date" id="d_fecha"></label>
+        <label class="campo"><span>Hora</span><input type="time" id="d_hora"></label>
+      </div>
+      <div class="dos">
+        <label class="campo"><span>Formato</span><select id="d_formato"><option value="post">Post</option><option value="carrusel">Carrusel</option><option value="reel">Reel</option><option value="historia">Historia</option></select></label>
+        <label class="campo"><span>Tipo</span><select id="d_tipo"><option value="convocatoria">Convocatoria</option><option value="actividad">Actividad</option><option value="fecha">Fecha importante</option><option value="comunicado">Comunicado</option><option value="otro">Otro</option></select></label>
+      </div>
+      <label class="campo"><span>Idea</span><textarea id="d_idea" rows="3" placeholder="De qué va y qué datos tiene que llevar"></textarea></label>
+      <label class="campo"><span>A cargo</span><input id="d_resp" placeholder="Quién saca la foto, arma la placa o la sube"></label>
+    </div>
+    <div class="caja">
+      <h3>Datos de la actividad</h3>
+      <p>Si la pieza anuncia algo, cargá cuándo y dónde es. Claude los usa tal cual en los textos.</p>
+      <div class="dos">
+        <label class="campo"><span>Día</span><input type="date" id="d_evfecha"></label>
+        <label class="campo"><span>Hora</span><input type="time" id="d_evhora"></label>
+      </div>
+      <label class="campo"><span>Lugar</span><input id="d_evlugar" placeholder="Dirección o nombre del lugar"></label>
+    </div>
+    <div class="caja" id="d_balance" hidden>
+      <h3>Cómo le fue</h3>
+      <label class="campo"><span>Link del posteo</span><input type="url" inputmode="url" id="d_link" placeholder="https://www.instagram.com/p/…"></label>
+      <div class="fila-btn"><a class="btn sec mini" id="d_link_abrir" target="_blank" rel="noopener" style="text-decoration:none" hidden>Abrir el posteo</a><span class="nota">Con el link cargado, Claude puede completar estos números desde tu computadora cuando se lo pidas.</span></div>
+      <div class="tres">
+        <label class="campo"><span>Alcance</span><input type="number" min="0" inputmode="numeric" id="d_alcance"></label>
+        <label class="campo"><span>Me gusta</span><input type="number" min="0" inputmode="numeric" id="d_likes"></label>
+        <label class="campo"><span>Comentarios</span><input type="number" min="0" inputmode="numeric" id="d_coment"></label>
+      </div>
+    </div>
+
+    <div class="caja" id="d_ia" hidden>
+      <h3>Escribir con Claude</h3>
+      <label class="campo"><span>Indicaciones (opcional)</span><input id="d_indic" placeholder="Más corto, con humor, que nombre a la plaza…"></label>
+      <div class="fila-btn"><button type="button" class="btn" id="d_gen">Generar textos</button><button type="button" class="btn sec" id="d_var">3 versiones del copy</button><button type="button" class="btn sec mini" id="d_stop" hidden>Detener</button><span class="nota" id="d_gen_estado"></span></div>
+      <div id="d_vars" class="grupo"></div>
+    </div>
+
+    <div class="caja">
+      <div class="cab"><h3>Texto de la gráfica</h3><button type="button" class="btn sec mini" data-copia="d_texto">Copiar</button></div>
+      <textarea id="d_texto" rows="4" placeholder="Titular, bajada y datos que van dentro de la placa"></textarea>
+      <div class="fila-btn"><a class="btn sec mini" href="https://alekdrezce.github.io/ELTALLER/" target="_blank" rel="noopener" style="text-decoration:none">Armar la placa en El Taller</a></div>
+    </div>
+    <div class="caja">
+      <div class="cab"><h3>Copy y hashtags</h3><button type="button" class="btn sec mini" data-copia="d_copy">Copiar</button></div>
+      <textarea id="d_copy" rows="11" placeholder="La descripción del posteo y, debajo, los hashtags"></textarea>
+    </div>
+    <div class="caja" id="d_guion_caja">
+      <div class="cab"><h3 id="d_guion_tit">Guion</h3><button type="button" class="btn sec mini" data-copia="d_guion">Copiar</button></div>
+      <textarea id="d_guion" rows="10"></textarea>
+    </div>
+    <div class="caja" id="d_rep_caja" hidden>
+      <h3>Llevar a otro perfil</h3>
+      <p>Crea una copia en el calendario del otro perfil, con los textos adaptados a su voz.</p>
+      <div class="fila-btn"><select id="d_dest" aria-label="Perfil de destino" style="width:auto;flex:1;min-width:0"></select><button type="button" class="btn sec" id="d_rep">Copiar y adaptar</button></div>
+      <span class="nota" id="d_rep_estado"></span>
+    </div>
+    <div class="fila-btn">
+      <button type="button" class="btn peligro" id="d_borrar">Borrar pieza</button>
+      <span id="d_conf" hidden class="fila-btn"><span>¿Borrarla?</span><button type="button" class="btn peligro mini" id="d_borrar_si">Sí, borrar</button><button type="button" class="btn sec mini" id="d_borrar_no">No</button></span>
+    </div>
+  </div>
+</div>
+
+<nav class="tabs" role="tablist">
+  <button type="button" role="tab" data-v="hoy" aria-selected="true">Hoy</button>
+  <button type="button" role="tab" data-v="mes" aria-selected="false">Mes</button>
+  <button type="button" role="tab" data-v="chat" aria-selected="false">Chat</button>
+  <button type="button" role="tab" data-v="comite" aria-selected="false">Perfil</button>
+</nav>
+<div id="toast" hidden role="status"></div>
+
+<script>
+(function(){
+"use strict";
+const $ = (s, r) => (r || document).querySelector(s);
+function h(tag, attrs, ...kids){
+  const e = document.createElement(tag);
+  for (const k in (attrs || {})){
+    const v = attrs[k];
+    if (v == null || v === false) continue;
+    if (k === "class") e.className = v;
+    else if (k.slice(0,2) === "on") e.addEventListener(k.slice(2), v);
+    else e.setAttribute(k, v === true ? "" : v);
+  }
+  for (const c of kids.flat()){ if (c == null || c === false) continue; e.append(c.nodeType ? c : document.createTextNode(String(c))); }
+  return e;
+}
+const MESES = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","setiembre","octubre","noviembre","diciembre"];
+const DIAS = ["dom","lun","mar","mié","jue","vie","sáb"];
+const DIAS_L = ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"];
+const FORMATOS = ["post","carrusel","reel","historia"];
+const TIPOS = ["convocatoria","actividad","fecha","comunicado","otro"];
+const TIPO_N = {convocatoria:"Convocatoria",actividad:"Actividad",fecha:"Fecha importante",comunicado:"Comunicado",otro:"Otro"};
+const ESTADO_N = {pendiente:"Pendiente",listo:"Lista",publicado:"Publicada"};
+const CAMPOS_TXT = ["titulo","idea","texto_pieza","copy","guion","hashtags","ev_lugar","responsable","link"];
+const NUMS = ["alcance","likes","comentarios"];
+/* Agenda fija: [mes, día, título, dato] */
+const EFEM = [
+  [2,5,"Aniversario del Frente Amplio","El FA se fundó el 5 de febrero de 1971."],
+  [3,1,"1.º de marzo de 2005: asume el primer gobierno del FA",""],
+  [3,8,"Día Internacional de la Mujer",""],
+  [3,26,"26 de marzo de 1971: primer acto de masas del FA",""],
+  [5,1,"Día de los Trabajadores",""],
+  [5,13,"Recordamos a Pepe Mujica","Falleció el 13 de mayo de 2025."],
+  [5,20,"Marcha del Silencio","Verdad, memoria y justicia por los detenidos desaparecidos."],
+  [6,19,"Natalicio de Artigas",""],
+  [6,27,"27 de junio de 1973: golpe de Estado y huelga general",""],
+  [7,18,"Jura de la Constitución",""],
+  [7,31,"Recordamos a Líber Seregni","Falleció el 31 de julio de 2004."],
+  [8,14,"Día de los Mártires Estudiantiles",""],
+  [8,25,"Declaratoria de la Independencia y Día del Comité de Base",""],
+  [10,12,"Día de la Diversidad Cultural",""],
+  [10,19,"Día Mundial de Lucha contra el Cáncer de Mama",""],
+  [10,31,"31 de octubre de 2004: primer triunfo nacional del FA",""],
+  [11,25,"Día Internacional de la Eliminación de la Violencia contra la Mujer",""],
+  [11,27,"27 de noviembre de 1983: acto del Obelisco",""],
+  [11,30,"30 de noviembre de 1980: el No a la dictadura","Plebiscito constitucional de 1980."],
+  [12,3,"Día Nacional del Candombe",""],
+  [12,10,"Día de los Derechos Humanos",""],
+  [12,13,"Natalicio de Líber Seregni","Nació el 13 de diciembre de 1916."]
+];
+const pad = n => String(n).padStart(2,"0");
+const iso = d => d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());
+const hoy = () => iso(new Date());
+const aFecha = s => { const [y,m,d] = String(s).split("-").map(Number); return new Date(y, (m||1)-1, d||1); };
+const sumar = (s, n) => { const d = aFecha(s); d.setDate(d.getDate()+n); return iso(d); };
+const fLarga = s => { const d = aFecha(s); return DIAS_L[d.getDay()]+" "+d.getDate()+" de "+MESES[d.getMonth()]; };
+const esFecha = s => /^\d{4}-\d{2}-\d{2}$/.test(String(s||""));
+const esHora = s => /^\d{2}:\d{2}$/.test(String(s||""));
+function num(v){ if (v === "" || v == null) return ""; const n = Math.round(Number(v)); return Number.isFinite(n) && n >= 0 ? n : ""; }
+function guarda(k, v){ try { localStorage.setItem(k, v); } catch (e){} }
+function lee(k){ try { return localStorage.getItem(k); } catch (e){ return null; } }
+
+const S = { db:null, sample:null, tools:false, local:false, ready:false, r1:false, r2:false, fijas:false,
+  piezas:new Map(), todas:new Map(), perfiles:new Map(), perfil:"", comite:{}, turns:[], vista:"hoy", abierta:null, n:0,
+  verTodos: lee("redes_todos") === "1", lote:{ activo:false, msg:"", err:false } };
+const t0 = new Date(); S.mes = { y:t0.getFullYear(), m:t0.getMonth() };
+
+/* ---------- datos ---------- */
+const colas = new Map();
+function enCola(k, fn){ const p = (colas.get(k) || Promise.resolve()).then(fn, fn); colas.set(k, p.catch(() => {})); return p; }
+function unir(copy, tags){ copy = String(copy||"").trim(); tags = String(tags||"").trim(); return copy && tags ? copy+"\n\n"+tags : copy || tags; }
+function limpia(d){
+  const o = { fecha: esFecha(d.fecha) ? d.fecha : hoy(), hora: esHora(d.hora) ? d.hora : "",
+    formato: FORMATOS.includes(d.formato) ? d.formato : "post", tipo: TIPOS.includes(d.tipo) ? d.tipo : "otro",
+    estado: ESTADO_N[d.estado] ? d.estado : "pendiente",
+    perfil: typeof d.perfil === "string" ? d.perfil : "", regla: typeof d.regla === "string" ? d.regla : "",
+    ev_fecha: esFecha(d.ev_fecha) ? d.ev_fecha : "", ev_hora: esHora(d.ev_hora) ? d.ev_hora : "" };
+  for (const c of CAMPOS_TXT) o[c] = String(d[c] == null ? "" : d[c]).slice(0, 8000);
+  for (const c of NUMS) o[c] = num(d[c]);
+  if (o.hashtags.trim()){ o.copy = unir(o.copy, o.hashtags); o.hashtags = ""; }
+  if (!o.titulo) o.titulo = "Pieza sin título";
+  return o;
+}
+function parche(p){
+  const o = {};
+  if (esFecha(p.fecha)) o.fecha = p.fecha;
+  if (typeof p.hora === "string" && (p.hora === "" || esHora(p.hora))) o.hora = p.hora;
+  if (typeof p.ev_fecha === "string" && (p.ev_fecha === "" || esFecha(p.ev_fecha))) o.ev_fecha = p.ev_fecha;
+  if (typeof p.ev_hora === "string" && (p.ev_hora === "" || esHora(p.ev_hora))) o.ev_hora = p.ev_hora;
+  if (FORMATOS.includes(p.formato)) o.formato = p.formato;
+  if (TIPOS.includes(p.tipo)) o.tipo = p.tipo;
+  if (ESTADO_N[p.estado]) o.estado = p.estado;
+  for (const c of CAMPOS_TXT) if (c !== "hashtags" && typeof p[c] === "string") o[c] = p[c].slice(0, 8000);
+  for (const c of NUMS) if (c in p) o[c] = num(p[c]);
+  if (typeof p.copy === "string"){ o.copy = unir(p.copy, p.hashtags).slice(0, 8000); o.hashtags = ""; }
+  return o;
+}
+const CLAVE = "hdr_datos";
+function persistir(){ if (!S.local) return; guarda(CLAVE, JSON.stringify({ n:S.n, piezas:[...S.todas], perfiles:[...S.perfiles] })); }
+function cargarLocal(){
+  try { const d = JSON.parse(lee(CLAVE) || "null"); if (!d) return;
+    S.n = Number(d.n) || 0;
+    S.todas = new Map((d.piezas || []).map(([id, p]) => [String(id), limpia(p || {})]));
+    S.perfiles = new Map((d.perfiles || []).map(([id, p]) => [String(id), Object.assign({}, p)]));
+  } catch (e){}
+}
+function ordenPerfiles(){ return [...S.perfiles].map(([id, p]) => Object.assign({}, p, { id })).sort((a,b) => (Number(a.orden)||0) - (Number(b.orden)||0) || String(a.nombre||"").localeCompare(String(b.nombre||""))); }
+function prim(){ return (ordenPerfiles()[0] || {}).id; }
+function filtrar(){ const pr = prim(); S.piezas = new Map([...S.todas].filter(([, p]) => (p.perfil || pr) === S.perfil)); }
+async function crear(d, pid, idFijo){
+  const data = limpia(d); data.perfil = pid || S.perfil;
+  if (S.db){ const ref = idFijo ? S.db.doc("piezas/"+idFijo) : S.db.collection("piezas").doc(); await ref.set(data); return ref.id; }
+  const id = idFijo || "local" + (++S.n); S.todas.set(id, data); filtrar(); pintar(); return id;
+}
+function cambiar(id, p){
+  const data = parche(p);
+  if (!Object.keys(data).length) return Promise.resolve();
+  if (S.db) return enCola(id, () => S.db.doc("piezas/"+id).update(data)).catch(falla);
+  if (!S.todas.has(id)) return Promise.resolve();
+  S.todas.set(id, Object.assign({}, S.todas.get(id), data)); filtrar(); pintar(); return Promise.resolve();
+}
+function borrar(id){
+  if (S.db) return enCola(id, () => S.db.doc("piezas/"+id).delete()).catch(falla);
+  S.todas.delete(id); filtrar(); pintar(); return Promise.resolve();
+}
+function falla(e){
+  const c = e && e.code;
+  toast(c === "quota_exceeded" ? "No hay más lugar para guardar. Borrá piezas viejas." : c === "invalid_argument" ? "No se pudo guardar ese cambio." : "No se pudo guardar. Probá de nuevo.");
+}
+const orden = (a,b) => (a.fecha+(a.hora||"99")).localeCompare(b.fecha+(b.hora||"99"));
+function lista(){ return [...S.piezas].map(([id, p]) => Object.assign({}, p, { id })).sort(orden); }
+function listaTodas(){ const pr = prim(); return [...S.todas].map(([id, p]) => Object.assign({}, p, { id, perfil: p.perfil || pr })).sort(orden); }
+function nombreDe(pid){ const p = S.perfiles.get(pid); return (p && p.nombre) || "Perfil"; }
+
+/* ---------- vistas ---------- */
+let tt;
+function toast(m){ const t = $("#toast"); t.textContent = m; t.hidden = false; clearTimeout(tt); tt = setTimeout(() => { t.hidden = true; }, 2800); }
+function fila(p, conPerfil){
+  const d = aFecha(p.fecha), tarde = p.fecha < hoy() && p.estado !== "publicado";
+  const meta = [p.formato[0].toUpperCase()+p.formato.slice(1), TIPO_N[p.tipo], p.hora, p.responsable ? "A cargo: "+p.responsable : ""].filter(Boolean).join(" · ");
+  return h("button", { type:"button", class:"fila"+(tarde?" tarde":""), onclick:() => abrir(p.id) },
+    h("div", { class:"dia" }, d.getDate(), h("span", null, DIAS[d.getDay()])),
+    h("div", null, conPerfil ? h("div", { class:"quien" }, nombreDe(p.perfil)) : null, h("div", { class:"tit" }, p.titulo), h("div", { class:"meta" }, meta)),
+    h("span", { class:"pill "+p.estado }, ESTADO_N[p.estado]));
+}
+function grupo(tit, ps, nota, conPerfil){
+  return h("div", { class:"grupo" }, h("h2", { class:"sec-t" }, tit, nota ? h("small", null, nota) : null), ps.map(p => fila(p, conPerfil)));
+}
+function sinTexto(ps){ return ps.filter(p => p.estado !== "publicado" && !p.copy.trim()); }
+function loteUI(ps, etiqueta){
+  if (!S.sample) return null;
+  const faltan = sinTexto(ps), box = h("div", { class:"fila-btn" });
+  if (S.lote.activo) box.append(h("span", { class:"nota" }, S.lote.msg), h("button", { type:"button", class:"btn sec mini", onclick:() => loteCtl && loteCtl.abort() }, "Detener"));
+  else {
+    if (faltan.length) box.append(h("button", { type:"button", class:"btn", onclick:() => lote(faltan) }, etiqueta+" ("+faltan.length+")"));
+    if (S.lote.msg) box.append(h("span", { class: S.lote.err ? "err" : "nota" }, S.lote.msg));
+  }
+  return box.childNodes.length ? box : null;
+}
+function pintarHoy(){
+  const v = $("#v-hoy"), t = hoy(); v.textContent = "";
+  const varios = S.perfiles.size > 1, todos = S.verTodos && varios, ps = todos ? listaTodas() : lista();
+  const box = h("div", { class:"grupo", style:"gap:20px" });
+  if (!S.ready){ box.append(h("div", { class:"vacio" }, "Cargando tu plan…")); v.append(box); return; }
+  if (varios) box.append(h("div", { class:"seg", role:"group", "aria-label":"Qué perfiles ver" },
+    h("button", { type:"button", "aria-pressed": String(!todos), onclick:() => { S.verTodos = false; guarda("redes_todos","0"); pintarHoy(); } }, "Este perfil"),
+    h("button", { type:"button", "aria-pressed": String(todos), onclick:() => { S.verTodos = true; guarda("redes_todos","1"); pintarHoy(); } }, "Todos los perfiles")));
+  const tarde = ps.filter(p => p.fecha < t && p.estado !== "publicado");
+  const deHoy = ps.filter(p => p.fecha === t);
+  const prox = ps.filter(p => p.fecha > t && p.fecha <= sumar(t, 7));
+  if (!ps.length){
+    box.append(h("div", { class:"caja" }, h("h3", null, "Todavía no hay plan"), h("p", null, "Acá vas a ver qué toca subir hoy y qué viene en la semana. Empezá por la pestaña Mes: armá el plan con Claude o cargá la primera pieza."),
+      h("div", { class:"fila-btn" }, h("button", { type:"button", class:"btn", onclick:() => ver("mes") }, "Ir al mes"))));
+  } else {
+    if (!todos){ const l = loteUI(deHoy.concat(prox), "Escribir los textos de la semana"); if (l) box.append(l); }
+    if (tarde.length) box.append(grupo("Atrasadas", tarde, "sin publicar", todos));
+    box.append(deHoy.length ? grupo("Para hoy", deHoy, null, todos) : h("div", { class:"grupo" }, h("h2", { class:"sec-t" }, "Para hoy"), h("div", { class:"vacio" }, "Hoy no hay nada para subir.")));
+    box.append(prox.length ? grupo("Próximos 7 días", prox, null, todos) : h("div", { class:"grupo" }, h("h2", { class:"sec-t" }, "Próximos 7 días"), h("div", { class:"vacio" }, "No hay piezas planificadas para esta semana.")));
+  }
+  v.append(box);
+}
+function efemDe(m){ return EFEM.filter(e => e[0] === m+1); }
+function pintarMes(){
+  const { y, m } = S.mes, pre = y+"-"+pad(m+1), t = hoy(), ps = lista().filter(p => p.fecha.slice(0,7) === pre);
+  $("#mes_tit").textContent = MESES[m]+" "+y;
+  $("#plan_tit").textContent = "Armar "+MESES[m]+" con Claude";
+  const cal = $("#cal"); cal.textContent = "";
+  for (const d of ["lun","mar","mié","jue","vie","sáb","dom"]) cal.append(h("div", { class:"dn" }, d));
+  const off = (new Date(y, m, 1).getDay() + 6) % 7, n = new Date(y, m+1, 0).getDate();
+  for (let i = 0; i < off; i++) cal.append(h("div"));
+  for (let d = 1; d <= n; d++){
+    const f = pre+"-"+pad(d), del = ps.filter(p => p.fecha === f);
+    cal.append(h("button", { type:"button", class: f === t ? "hoy" : "", "aria-label": d+" de "+MESES[m]+", "+del.length+" piezas",
+      onclick:() => { if (del.length){ const el = document.getElementById("dia-"+f); if (el) el.scrollIntoView({ behavior:"smooth", block:"center" }); } else nueva(f); } },
+      d, h("div", { class:"pts" }, del.slice(0,4).map(p => h("i", { class:p.estado })))));
+  }
+  const lz = $("#mes_lote"); lz.textContent = ""; const l = S.ready ? loteUI(ps.filter(p => p.fecha >= t), "Escribir los textos pendientes") : null; if (l) lz.append(l);
+  const ex = $("#mes_extra"); ex.textContent = "";
+  const ef = efemDe(m);
+  if (S.ready && ef.length){
+    ex.append(h("div", { class:"caja" }, h("h3", null, "Fechas de "+MESES[m]),
+      ef.map(e => { const f = pre+"-"+pad(e[1]), ya = ps.some(p => p.fecha === f && p.tipo === "fecha");
+        return h("div", { class:"efem" }, h("b", null, e[1]), h("span", null, e[2]),
+          ya ? h("span", { class:"nota" }, "En el plan") : h("button", { type:"button", class:"btn sec mini", onclick:() => crear({ fecha:f, tipo:"fecha", formato:"post", titulo:e[2], idea:e[3] }).then(() => toast("Sumada al plan"), falla) }, "Sumar")); })));
+  }
+  const pub = ps.filter(p => p.estado === "publicado");
+  if (S.ready && pub.length){
+    const con = pub.filter(p => p.alcance !== "" || p.likes !== "").sort((a,b) => (Number(b.alcance)||0) - (Number(a.alcance)||0) || (Number(b.likes)||0) - (Number(a.likes)||0)).slice(0,3);
+    ex.append(h("div", { class:"caja" }, h("h3", null, "Balance de "+MESES[m]),
+      h("p", null, pub.length+" de "+ps.length+" publicadas."+(con.length ? " Las que mejor funcionaron:" : " Cargá el alcance y los me gusta en cada pieza publicada para ver qué funcionó mejor.")),
+      con.map(p => h("div", { class:"efem" }, h("b", null, aFecha(p.fecha).getDate()), h("span", null, p.titulo), h("span", { class:"nota" }, [p.alcance !== "" ? p.alcance+" de alcance" : "", p.likes !== "" ? p.likes+" me gusta" : ""].filter(Boolean).join(" · "))))));
+  }
+  const L = $("#lista_mes"); L.textContent = "";
+  if (!S.ready) L.append(h("div", { class:"vacio" }, "Cargando…"));
+  else if (!ps.length) L.append(h("div", { class:"vacio" }, "No hay piezas en "+MESES[m]+". Tocá un día del calendario para cargar una."));
+  else { let ult = ""; for (const p of ps){ const r = fila(p); if (p.fecha !== ult){ r.id = "dia-"+p.fecha; ult = p.fecha; } L.append(r); } }
+}
+function pintarCab(){
+  const t = new Date(), pre = hoy().slice(0,7), ps = lista().filter(p => p.fecha.slice(0,7) === pre);
+  $("#h_fecha").textContent = DIAS_L[t.getDay()]+" "+t.getDate()+" de "+MESES[t.getMonth()];
+  $("#h_resumen").textContent = ps.length ? ps.filter(p => p.estado === "publicado").length+" de "+ps.length+" publicadas en "+MESES[t.getMonth()] : "";
+}
+function pintar(){
+  pintarCab(); pintarPerfiles(); pintarHoy(); pintarMes();
+  $("#aviso_local").hidden = !S.local || S.solo; $("#nota_solo").hidden = !S.solo;
+  if (S.local && S.ready) persistir();
+  if (S.abierta){ if (!S.todas.has(S.abierta)) cerrar(); else marcarEstado(S.todas.get(S.abierta).estado); }
+}
+function ver(v){
+  S.vista = v;
+  for (const n of ["hoy","mes","chat","comite"]) $("#v-"+n).hidden = n !== v;
+  document.querySelectorAll("nav.tabs button").forEach(b => b.setAttribute("aria-selected", String(b.dataset.v === v)));
+  window.scrollTo(0, 0);
+}
+document.querySelectorAll("nav.tabs button").forEach(b => b.addEventListener("click", () => ver(b.dataset.v)));
+$("#mes_prev").onclick = () => { const d = new Date(S.mes.y, S.mes.m-1, 1); S.mes = { y:d.getFullYear(), m:d.getMonth() }; pintarMes(); };
+$("#mes_next").onclick = () => { const d = new Date(S.mes.y, S.mes.m+1, 1); S.mes = { y:d.getFullYear(), m:d.getMonth() }; pintarMes(); };
+async function nueva(f){
+  try { const id = await crear({ fecha: f || (hoy().slice(0,7) === S.mes.y+"-"+pad(S.mes.m+1) ? hoy() : S.mes.y+"-"+pad(S.mes.m+1)+"-01"), titulo:"Nueva pieza" }); abrir(id, true); }
+  catch (e){ falla(e); }
+}
+$("#btn_nueva").onclick = () => nueva();
+
+/* ---------- detalle ---------- */
+const DMAP = { d_titulo:"titulo", d_fecha:"fecha", d_hora:"hora", d_formato:"formato", d_tipo:"tipo", d_idea:"idea", d_resp:"responsable",
+  d_evfecha:"ev_fecha", d_evhora:"ev_hora", d_evlugar:"ev_lugar", d_texto:"texto_pieza", d_copy:"copy", d_guion:"guion",
+  d_alcance:"alcance", d_likes:"likes", d_coment:"comentarios", d_link:"link" };
+function linkUI(v){ const a = $("#d_link_abrir"), ok = /^https:\/\/\S+$/.test(String(v||"").trim()); a.hidden = !ok; if (ok) a.href = String(v).trim(); else a.removeAttribute("href"); }
+function marcarEstado(e){
+  document.querySelectorAll("#d_estado button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.e === e)));
+  $("#d_balance").hidden = e !== "publicado";
+}
+function guionUI(f){
+  $("#d_guion_caja").hidden = f === "post";
+  $("#d_guion_tit").textContent = f === "reel" ? "Guion del reel" : f === "carrusel" ? "Placas del carrusel" : "Secuencia de historias";
+}
+function abrir(id, nuevaP){
+  let p = S.todas.get(id);
+  if (p){ const pf = p.perfil || prim(); if (pf !== S.perfil && S.perfiles.has(pf)) elegir(pf); }
+  p = p || (nuevaP ? limpia({ titulo:"Nueva pieza" }) : null); if (!p) return;
+  S.abierta = id;
+  for (const k in DMAP){ const v = p[DMAP[k]]; $("#"+k).value = v == null ? "" : v; }
+  $("#d_indic").value = ""; $("#d_gen_estado").textContent = ""; $("#d_conf").hidden = true; $("#d_borrar").hidden = false;
+  $("#d_vars").textContent = ""; $("#d_rep_estado").textContent = "";
+  marcarEstado(p.estado); guionUI(p.formato); linkUI(p.link);
+  $("#d_ia").hidden = !S.sample;
+  const otros = ordenPerfiles().filter(x => x.id !== S.perfil), ds = $("#d_dest"); ds.textContent = "";
+  for (const o of otros) ds.append(h("option", { value:o.id }, o.nombre || "Perfil sin nombre"));
+  $("#d_rep_caja").hidden = !otros.length; $("#d_rep").textContent = S.sample ? "Copiar y adaptar" : "Copiar";
+  $("#detalle").hidden = false; $("#detalle").scrollTop = 0;
+  if (nuevaP){ $("#d_titulo").focus(); $("#d_titulo").select(); }
+}
+function cerrar(){ if (genCtl) genCtl.abort(); S.abierta = null; $("#detalle").hidden = true; }
+$("#d_cerrar").onclick = cerrar;
+for (const k in DMAP) $("#"+k).addEventListener("change", e => {
+  if (!S.abierta) return;
+  cambiar(S.abierta, { [DMAP[k]]: e.target.value });
+  if (k === "d_formato") guionUI(e.target.value);
+  if (k === "d_link") linkUI(e.target.value);
+});
+document.querySelectorAll("#d_estado button").forEach(b => b.addEventListener("click", () => {
+  if (!S.abierta) return; marcarEstado(b.dataset.e); cambiar(S.abierta, { estado:b.dataset.e });
+}));
+$("#d_borrar").onclick = () => { $("#d_conf").hidden = false; $("#d_borrar").hidden = true; };
+$("#d_borrar_no").onclick = () => { $("#d_conf").hidden = true; $("#d_borrar").hidden = false; };
+$("#d_borrar_si").onclick = () => { const id = S.abierta; cerrar(); borrar(id).then(() => toast("Pieza borrada")); };
+document.querySelectorAll("[data-copia]").forEach(b => b.addEventListener("click", async () => {
+  const ta = $("#"+b.dataset.copia);
+  if (!ta.value.trim()){ toast("No hay nada para copiar"); return; }
+  try { await navigator.clipboard.writeText(ta.value); toast("Copiado"); }
+  catch (e){ ta.focus(); ta.select(); toast("Quedó seleccionado: copialo desde el menú"); }
+}));
+
+/* ---------- Claude ---------- */
+function errIA(e){
+  const c = e && e.code;
+  if (c === "cancelled") return "";
+  if (c === "not_granted" || c === "sampling_disabled" || c === "not_declared" || c === "capability_disabled" || c === "capability_removed") return "Claude no está habilitado en esta vista.";
+  if (c === "rate_limited") return "Llegaste al límite de uso por ahora. Probá más tarde.";
+  if (c === "session_expired") return "Se venció la sesión. Volvé a entrar a Claude.";
+  if (c === "refused") return "Claude no pudo responder a ese pedido. Probá con otras palabras.";
+  if (c === "invalid_json" || c === "empty_completion") return "La respuesta vino incompleta. Probá de nuevo.";
+  if (c === "prompt_too_large") return "El pedido es demasiado largo. Acortalo.";
+  return "Se cortó la conexión con Claude. Probá de nuevo.";
+}
+function ctxDe(c){
+  const t = new Date();
+  const quien = c.tipo === "coordinadora" ? "coordinadora del Frente Amplio (Uruguay) que agrupa a varios comités de base de su zona y habla en nombre de todos ellos; maneja su propio Instagram con militantes voluntarios"
+    : c.tipo === "otro" ? "agrupación del Frente Amplio (Uruguay) que maneja su propio Instagram con militantes voluntarios"
+    : "comité de base del Frente Amplio (Uruguay) que maneja su propio Instagram con militantes voluntarios";
+  const l = ["Contexto: "+quien+".", "Hoy es "+DIAS_L[t.getDay()]+" "+hoy()+"."];
+  if (c.nombre) l.push("Nombre: "+c.nombre+".");
+  if (c.ig) l.push("Instagram: "+c.ig+".");
+  if (c.zona) l.push("Zona: "+c.zona+".");
+  if (c.reunion) l.push("Reunión: "+c.reunion+".");
+  if (c.local) l.push("Local: "+c.local+".");
+  if (c.tono) l.push("Cómo habla: "+c.tono+".");
+  if (c.hashtags) l.push("Hashtags fijos: "+c.hashtags+".");
+  if (c.notas) l.push("Notas: "+c.notas);
+  if (c.ejemplos) l.push("Posteos reales de esta cuenta, para imitar la voz, el largo y el modo de cerrar (no copies su contenido):\n"+String(c.ejemplos).slice(0, 5000));
+  return l.join("\n");
+}
+function ctxComite(){ return ctxDe(S.comite); }
+function specPieza(p){
+  const ev = [p.ev_fecha ? "día "+fLarga(p.ev_fecha) : "", p.ev_hora ? "hora "+p.ev_hora : "", p.ev_lugar ? "lugar "+p.ev_lugar : ""].filter(Boolean);
+  return "Fecha de publicación: "+fLarga(p.fecha)+(p.hora ? " a las "+p.hora : "")+"\nFormato: "+p.formato+"\nTipo: "+TIPO_N[p.tipo]+"\nTítulo: "+p.titulo+"\nIdea: "+(p.idea || "(sin detalle)")
+    +(ev.length ? "\nDatos de la actividad que se anuncia: "+ev.join(", ")+"." : "");
+}
+function planTxt(desde, hasta){
+  const ps = lista().filter(p => p.fecha >= desde && p.fecha <= hasta);
+  return ps.length ? ps.map(p => [p.id, p.fecha+(p.hora?" "+p.hora:""), p.formato, p.tipo, p.estado, p.titulo, (p.idea||"").slice(0,160)].join(" | ")).join("\n") : "(sin piezas)";
+}
+const REGLAS = "Escribí en español rioplatense con voseo, cercano y de barrio, sin jerga publicitaria ni emojis en exceso. No inventes datos (lugares, horas, nombres, cifras, resoluciones): usá los datos de la actividad y del perfil cuando estén, y si falta un dato dejalo entre [corchetes] para completar.";
+const G_REEL = "guion de 20 a 40 segundos numerado por escenas: qué se ve, qué se dice y qué texto va en pantalla";
+const G_CARR = "el texto de cada placa, numeradas, entre 4 y 6 placas";
+const G_HIST = "secuencia de 2 a 4 historias con el texto de cada una y el sticker sugerido (encuesta, pregunta, link)";
+function claves(formato){
+  const g = formato === "reel" ? G_REEL : formato === "carrusel" ? G_CARR : formato === "historia" ? G_HIST : formato === "post" ? "cadena vacía"
+    : "según el formato de la pieza. Reel: "+G_REEL+". Carrusel: "+G_CARR+". Historia: "+G_HIST+". Post: cadena vacía";
+  return '"texto_pieza": lo que va dentro de la gráfica: titular de hasta 6 palabras, salto de línea, bajada de una frase y, si corresponde, día, hora y lugar. En un reel es el texto de portada.\n'
+    +'"copy": la descripción del posteo, de 2 a 4 párrafos cortos con un llamado a la acción al final, sin hashtags.\n'
+    +'"guion": '+g+".\n"
+    +'"hashtags": de 5 a 8 hashtags separados por espacios, incluyendo los fijos de la cuenta.';
+}
+function txt(v){ return typeof v === "string" ? v.trim() : Array.isArray(v) ? v.map(x => typeof x === "string" ? x : JSON.stringify(x)).join("\n") : ""; }
+function salida(r){ r = r || {}; return parche({ texto_pieza: txt(r.texto_pieza), copy: txt(r.copy), guion: txt(r.guion), hashtags: txt(r.hashtags) }); }
+async function pedirTextos(p, ctx, indic, signal){
+  const previo = (p.copy || p.guion || p.texto_pieza) ? "\nVersión actual, para mejorarla o adaptarla:\nTexto de la gráfica: "+p.texto_pieza+"\nCopy y hashtags: "+p.copy+"\nGuion: "+p.guion+"\n" : "";
+  const prompt = ctx+"\n\nTarea: redactá el contenido de UNA publicación de Instagram de esta cuenta.\n"+specPieza(p)+"\n"
+    +(indic ? "Indicaciones de quien publica: "+indic+"\n" : "")+previo+"\n"+REGLAS+"\n\n"
+    +"Respondé SOLO con un objeto JSON con estas cuatro claves, todas strings:\n"+claves(p.formato);
+  const out = salida(await S.sample.json(prompt, { signal, cache:false }));
+  if (!out.copy && !out.texto_pieza) throw { code:"invalid_json" };
+  return out;
+}
+let genCtl = null;
+function ocupado(si, msg, err){
+  $("#d_gen").disabled = si; $("#d_var").disabled = si; $("#d_stop").hidden = !si;
+  const est = $("#d_gen_estado"); est.className = err ? "err" : "nota"; est.textContent = msg || "";
+}
+$("#d_gen").onclick = async () => {
+  const id = S.abierta, p = S.todas.get(id); if (!p || !S.sample || genCtl) return;
+  genCtl = new AbortController(); ocupado(true, "Claude está escribiendo…");
+  let msg = "", err = false;
+  try {
+    const out = await pedirTextos(p, ctxComite(), $("#d_indic").value.trim(), genCtl.signal);
+    await cambiar(id, out);
+    if (S.abierta === id){ $("#d_texto").value = out.texto_pieza; $("#d_copy").value = out.copy; $("#d_guion").value = out.guion; }
+    msg = "Listo. Revisá y ajustá lo que haga falta.";
+  } catch (e){ msg = errIA(e); err = !!msg; }
+  finally { genCtl = null; ocupado(false, msg, err); }
+};
+$("#d_var").onclick = async () => {
+  const id = S.abierta, p = S.todas.get(id); if (!p || !S.sample || genCtl) return;
+  const indic = $("#d_indic").value.trim(), box = $("#d_vars"); box.textContent = "";
+  const prompt = ctxComite()+"\n\nTarea: proponé 3 versiones bien distintas del copy de esta publicación de Instagram: una directa e informativa, una más emotiva y una breve.\n"+specPieza(p)+"\n"
+    +(indic ? "Indicaciones de quien publica: "+indic+"\n" : "")+"\n"+REGLAS+"\n\n"
+    +'Respondé SOLO con un array JSON de 3 objetos con estas claves string: "enfoque" (dos o tres palabras que nombren la versión), "copy" (la descripción, sin hashtags), "hashtags" (de 5 a 8, separados por espacios, incluyendo los fijos de la cuenta).';
+  genCtl = new AbortController(); ocupado(true, "Claude está escribiendo tres versiones…");
+  let msg = "", err = false;
+  try {
+    const r = await S.sample.json(prompt, { signal: genCtl.signal, cache:false });
+    const vs = (Array.isArray(r) ? r : []).map(x => ({ enfoque: txt(x && x.enfoque) || "Versión", copy: unir(txt(x && x.copy), txt(x && x.hashtags)) })).filter(x => x.copy).slice(0, 3);
+    if (!vs.length) throw { code:"invalid_json" };
+    if (S.abierta === id) for (const v of vs) box.append(h("div", { class:"var" }, h("b", null, v.enfoque), h("div", { class:"vtxt" }, v.copy),
+      h("div", { class:"fila-btn" }, h("button", { type:"button", class:"btn mini", onclick:() => { if (S.abierta !== id) return; $("#d_copy").value = v.copy; cambiar(id, { copy:v.copy }); box.textContent = ""; toast("Copy reemplazado"); } }, "Usar esta"))));
+    msg = "Elegí una o cerralas.";
+  } catch (e){ msg = errIA(e); err = !!msg; }
+  finally { genCtl = null; ocupado(false, msg, err); }
+};
+$("#d_stop").onclick = () => genCtl && genCtl.abort();
+
+let repCtl = null;
+$("#d_rep").onclick = async () => {
+  const id = S.abierta, p = S.todas.get(id), dest = $("#d_dest").value, pf = S.perfiles.get(dest); if (!p || !pf || repCtl) return;
+  const est = $("#d_rep_estado"), nom = pf.nombre || "el otro perfil"; est.className = "nota"; est.textContent = "Copiando…"; $("#d_rep").disabled = true;
+  repCtl = new AbortController();
+  try {
+    const base = limpia(Object.assign({}, p, { estado:"pendiente", responsable:"", alcance:"", likes:"", comentarios:"", regla:"", link:"" }));
+    const nid = await crear(base, dest);
+    if (S.sample && (p.copy || p.texto_pieza)){
+      est.textContent = "Claude la está adaptando para "+nom+"…";
+      try {
+        const out = await pedirTextos(base, ctxDe(pf), "Esta pieza se escribió para la cuenta de "+(S.comite.nombre || "otro perfil")+". Adaptala a esta cuenta: cambiá quién habla y a quién le habla, usá su voz y sus hashtags, y mantené los datos de la actividad.", repCtl.signal);
+        await cambiar(nid, out); est.textContent = "Copiada y adaptada en "+nom+".";
+      } catch (e){ est.textContent = "Quedó copiada en "+nom+" sin adaptar. "+errIA(e); }
+    } else est.textContent = "Copiada en "+nom+".";
+  } catch (e){ falla(e); est.textContent = ""; }
+  finally { repCtl = null; $("#d_rep").disabled = false; }
+};
+
+let loteCtl = null;
+async function lote(ps){
+  if (!S.sample || S.lote.activo) return;
+  ps = ps.slice(0, 24); const ctx = ctxComite(); let hechas = 0;
+  loteCtl = new AbortController(); S.lote = { activo:true, msg:"Claude está escribiendo "+ps.length+" piezas…", err:false }; pintar();
+  try {
+    for (let i = 0; i < ps.length; i += 6){
+      const g = ps.slice(i, i+6);
+      const prompt = ctx+"\n\nTarea: redactá el contenido de estas "+g.length+" publicaciones de Instagram de esta cuenta. Que no repitan entre sí los arranques ni los cierres.\n\n"
+        +g.map(p => "PIEZA id="+p.id+"\n"+specPieza(p)).join("\n\n")+"\n\n"+REGLAS+"\n\n"
+        +'Respondé SOLO con un array JSON, un objeto por pieza, con estas claves string:\n"id": el id de la pieza, tal cual.\n'+claves(null);
+      const r = await S.sample.json(prompt, { signal: loteCtl.signal, cache:false });
+      for (const x of (Array.isArray(r) ? r : [])){
+        const id = String((x && x.id) || ""); if (!g.some(q => q.id === id)) continue;
+        const out = salida(x); if (!out.copy) continue;
+        await cambiar(id, out); hechas++;
+      }
+      S.lote.msg = "Van "+hechas+" de "+ps.length+"…"; pintar();
+    }
+    S.lote = { activo:false, msg: hechas ? "Listo: "+hechas+" piezas con textos. Revisalas antes de publicar." : "No salió ninguna. Probá de nuevo.", err: !hechas };
+  } catch (e){ const m = errIA(e); S.lote = { activo:false, msg:(hechas ? "Quedaron "+hechas+" escritas. " : "")+m, err: !!m }; }
+  finally { loteCtl = null; pintar(); }
+}
+
+let planCtl = null;
+$("#btn_plan").onclick = async () => {
+  if (!S.sample) return;
+  const { y, m } = S.mes, pre = y+"-"+pad(m+1), fin = pre+"-"+pad(new Date(y, m+1, 0).getDate()), est = $("#plan_estado");
+  const desde = pre === hoy().slice(0,7) ? hoy() : pre+"-01";
+  const ef = efemDe(m).map(e => pre+"-"+pad(e[1])+" "+e[2]).join("\n") || "(ninguna cargada)";
+  const fijas = reglas().filter(r => r && r.titulo).map(r => r.titulo+" (cada "+DIAS_L[Number(r.dow)||0]+")").join("; ");
+  const res = lista().filter(p => p.estado === "publicado" && (p.alcance !== "" || p.likes !== "")).slice(-25).map(p => [p.titulo, p.formato, p.tipo, "alcance "+(p.alcance === "" ? "?" : p.alcance), "me gusta "+(p.likes === "" ? "?" : p.likes)].join(" | ")).join("\n");
+  const prompt = ctxComite()+"\n\nTarea: armá el plan de publicaciones de Instagram de esta cuenta para "+MESES[m]+" de "+y+", desde "+desde+" hasta "+fin+".\n"
+    +"Lo que cuentan sobre este mes: "+($("#plan_notas").value.trim() || "(nada en particular)")+"\n\n"
+    +"Fechas de la agenda fija de este mes (usalas si caen en el rango):\n"+ef+"\n\n"
+    +(fijas ? "Piezas que ya se crean solas todas las semanas, no las propongas: "+fijas+".\n\n" : "")
+    +(res ? "Resultados de publicaciones anteriores, para repetir lo que funcionó:\n"+res+"\n\n" : "")
+    +"Piezas que ya están cargadas (no las repitas, completá alrededor):\n"+planTxt(pre+"-01", fin)+"\n\n"
+    +"Criterios: unas 3 publicaciones por semana más alguna historia; mezclá convocatorias, coberturas de actividades, fechas importantes y contenido para sumar gente. No agregues efemérides que no estén en la agenda fija salvo que estés seguro de la fecha. "+REGLAS+"\n\n"
+    +"Respondé SOLO con un array JSON de objetos con estas claves: "
+    +'"fecha" (AAAA-MM-DD dentro del rango), "hora" (HH:MM o ""), "formato" (post, carrusel, reel o historia), "tipo" (convocatoria, actividad, fecha, comunicado u otro), "titulo" (hasta 8 palabras), "idea" (una o dos frases con qué mostrar y qué datos lleva) y, solo si la pieza anuncia una actividad con datos conocidos, "ev_fecha" (AAAA-MM-DD), "ev_hora" (HH:MM) y "ev_lugar".';
+  planCtl = new AbortController();
+  $("#btn_plan").disabled = true; $("#btn_plan_stop").hidden = false; est.className = "nota"; est.textContent = "Claude está armando el plan. Puede tardar un minuto…";
+  try {
+    const r = await S.sample.json(prompt, { signal: planCtl.signal, cache:false });
+    const ok = (Array.isArray(r) ? r : []).filter(x => x && esFecha(x.fecha) && x.fecha >= pre+"-01" && x.fecha <= fin && x.titulo).slice(0, 40);
+    if (!ok.length) throw { code:"invalid_json" };
+    for (const x of ok) await crear(x);
+    est.textContent = "Se sumaron "+ok.length+" piezas a "+MESES[m]+".";
+  } catch (e){ const m2 = e && e.code && /^(quota_exceeded|unavailable|revoked|resource_exhausted)$/.test(e.code) ? "No se pudieron guardar todas las piezas." : errIA(e); est.className = m2 ? "err" : "nota"; est.textContent = m2; }
+  finally { $("#btn_plan").disabled = false; $("#btn_plan_stop").hidden = true; planCtl = null; }
+};
+$("#btn_plan_stop").onclick = () => planCtl && planCtl.abort();
+
+/* ---------- chat ---------- */
+function burbuja(role, text){ const b = h("div", { class:"msg "+role }, text); $("#chat_log").append(b); return b; }
+function pintarChat(){ const L = $("#chat_log"); L.textContent = ""; for (const t of S.turns) burbuja(t.role, t.content); $("#chat_sug").hidden = S.turns.length > 0 || !S.sample; }
+function guardarChat(pid, turns){ if (S.db && pid) enCola("chat-"+pid, () => S.db.doc("chats/"+pid).set({ turns: turns.slice(-30) })).catch(() => {}); }
+function cargarChat(){
+  S.turns = []; pintarChat(); const pid = S.perfil;
+  if (!S.db || !pid) return;
+  S.db.doc("chats/"+pid).get().then(d => {
+    const t = d.exists && d.data().turns;
+    if (S.perfil !== pid || S.turns.length || !Array.isArray(t)) return;
+    S.turns = t.filter(x => x && (x.role === "user" || x.role === "assistant") && typeof x.content === "string" && x.content);
+    while (S.turns.length && S.turns[S.turns.length-1].role === "user") S.turns.pop();
+    pintarChat();
+  }).catch(() => {});
+}
+const PROPS = { fecha:{type:"string",description:"fecha de publicación, AAAA-MM-DD"}, hora:{type:"string",description:"HH:MM o vacío"}, formato:{type:"string",enum:FORMATOS}, tipo:{type:"string",enum:TIPOS}, titulo:{type:"string"}, idea:{type:"string"},
+  ev_fecha:{type:"string",description:"día de la actividad que se anuncia, AAAA-MM-DD"}, ev_hora:{type:"string",description:"hora de la actividad, HH:MM"}, ev_lugar:{type:"string"}, responsable:{type:"string",description:"quién se encarga de la pieza"},
+  texto_pieza:{type:"string"}, copy:{type:"string",description:"descripción del posteo y, tras una línea en blanco, los hashtags"}, guion:{type:"string"} };
+const HERR = [
+  { name:"crear_pieza", description:"Agrega una pieza nueva al calendario de publicaciones del perfil activo. Devuelve el id creado. Usala cuando la persona pida sumar o planificar una publicación.",
+    inputSchema:{ type:"object", properties:PROPS, required:["fecha","formato","tipo","titulo"] },
+    async execute(i){ if (!esFecha(i.fecha)) throw new Error("fecha debe ser AAAA-MM-DD"); const id = await crear(i); return { id }; } },
+  { name:"actualizar_pieza", description:"Cambia campos de una pieza existente (por id): fechas, horas, formato, tipo, titulo, idea, datos de la actividad, responsable, texto_pieza, copy (incluye los hashtags al final), guion o estado (pendiente, listo, publicado). Devuelve ok. Mandá solo los campos que cambian.",
+    inputSchema:{ type:"object", properties:Object.assign({ id:{type:"string"}, estado:{type:"string",enum:["pendiente","listo","publicado"]} }, PROPS), required:["id"] },
+    async execute(i){ const id = String(i.id); if (!S.piezas.has(id)) throw new Error("no existe una pieza con ese id en este perfil"); await cambiar(id, i); return { ok:true }; } }
+];
+let chatCtl = null;
+async function enviar(texto){
+  texto = texto.trim(); if (!texto || !S.sample || chatCtl) return;
+  $("#chat_err").textContent = ""; $("#chat_in").value = "";
+  S.turns.push({ role:"user", content:texto }); pintarChat();
+  const b = burbuja("assistant", "Pensando…");
+  const t = hoy(), pid = S.perfil;
+  const reglasChat = ctxComite()+"\n\nSos el asistente de planificación de redes de esta cuenta, dentro de su app. Ayudás a planificar, redactar copies y guiones, y ordenar el calendario. "+REGLAS
+    +" Respondé breve y en texto plano, sin markdown ni asteriscos."
+    +(S.tools ? " Cuando te pidan sumar o cambiar publicaciones usá las herramientas y después contá en una línea qué hiciste. No podés borrar piezas: eso se hace desde la pieza." : " No podés modificar el calendario desde acá: proponé los cambios para que la persona los cargue.")
+    +"\n\nCalendario cargado (id | fecha | formato | tipo | estado | título | idea):\n"+planTxt(sumar(t,-10), sumar(t,70));
+  chatCtl = new AbortController(); $("#chat_stop").hidden = false; $("#chat_send").disabled = true;
+  const opts = { cache:false, signal: chatCtl.signal, onText: u => { b.textContent = u.text; } };
+  if (S.tools) opts.tools = HERR;
+  try {
+    const r = await S.sample([{ role:"user", content:reglasChat }].concat(S.turns.slice(-16)), opts);
+    if (S.perfil === pid){ b.textContent = r.text; S.turns.push({ role:"assistant", content:r.text }); }
+  } catch (e){
+    if (S.perfil === pid){
+      if (e && e.text){ b.textContent = e.text; S.turns.push({ role:"assistant", content:e.text }); } else b.remove();
+      $("#chat_err").textContent = errIA(e);
+    }
+  } finally { chatCtl = null; $("#chat_stop").hidden = true; $("#chat_send").disabled = false; if (S.perfil === pid) guardarChat(pid, S.turns); }
+}
+$("#chat_form").addEventListener("submit", e => { e.preventDefault(); enviar($("#chat_in").value); });
+$("#chat_stop").onclick = () => chatCtl && chatCtl.abort();
+$("#chat_clear").onclick = () => { if (chatCtl) return; S.turns = []; pintarChat(); guardarChat(S.perfil, []); };
+document.querySelectorAll("#chat_sug button").forEach(b => b.addEventListener("click", () => enviar(b.textContent)));
+
+/* ---------- perfiles ---------- */
+const CC = ["nombre","tipo","ig","zona","reunion","local","tono","hashtags","notas","ejemplos"];
+function llenarComite(todo){ for (const k of CC){ const el = $("#c_"+k); if (todo || document.activeElement !== el) el.value = S.comite[k] || (k === "tipo" ? "comite" : ""); } }
+function guardarPerfil(datos, pid){
+  pid = pid || S.perfil; if (pid === S.perfil) S.comite = datos; S.perfiles.set(pid, datos);
+  if (!S.db){ persistir(); return Promise.resolve(); }
+  return enCola("perfil-"+pid, () => S.db.doc("perfiles/"+pid).set(datos)).then(() => { if (S.perfil === pid) $("#c_estado").textContent = "Guardado"; }, falla);
+}
+function pintarPerfiles(){
+  const sel = $("#h_perfil"); sel.textContent = "";
+  for (const p of ordenPerfiles()) sel.append(h("option", { value:p.id }, p.nombre || "Perfil sin nombre"));
+  sel.append(h("option", { value:"__nuevo" }, "+ Agregar perfil…"));
+  sel.value = S.perfil;
+  const varios = S.perfiles.size > 1, n = S.piezas.size;
+  $("#p_borrar").hidden = !varios || !$("#p_conf").hidden;
+  $("#p_borrar").disabled = n > 0;
+  $("#p_nota").textContent = varios && n > 0 ? "Tiene "+n+" piezas cargadas: borralas antes de borrar el perfil." : "";
+}
+function elegir(id){
+  if (chatCtl) chatCtl.abort();
+  if (S.abierta) cerrar();
+  S.perfil = id; guarda("redes_perfil", id);
+  S.comite = Object.assign({}, S.perfiles.get(id) || {});
+  S.lote = { activo:S.lote.activo, msg:S.lote.activo ? S.lote.msg : "", err:false };
+  $("#c_estado").textContent = ""; $("#p_conf").hidden = true; $("#chat_err").textContent = "";
+  filtrar(); llenarComite(true); pintarReglas(); pintar(); cargarChat();
+}
+function sincPerfiles(){
+  if (!S.perfiles.size) S.perfiles.set("principal", { nombre:"Mi comité", tipo:"comite", orden:0 });
+  let q = S.perfil;
+  if (!S.perfiles.has(q)) q = lee("redes_perfil");
+  if (!S.perfiles.has(q)) q = ordenPerfiles()[0].id;
+  if (q !== S.perfil) elegir(q);
+  else { S.comite = Object.assign({}, S.perfiles.get(q)); llenarComite(); filtrar(); pintar(); }
+}
+$("#h_perfil").addEventListener("change", async e => {
+  const v = e.target.value;
+  if (v !== "__nuevo"){ if (S.perfiles.has(v)) elegir(v); return; }
+  const data = { nombre:"Perfil nuevo", tipo:"comite", orden: Date.now() };
+  let id;
+  if (S.db){
+    const ref = S.db.collection("perfiles").doc(); id = ref.id; S.perfiles.set(id, data);
+    try { await ref.set(data); } catch (err){ S.perfiles.delete(id); falla(err); pintarPerfiles(); return; }
+  } else { id = "p" + (++S.n); S.perfiles.set(id, data); }
+  elegir(id); ver("comite"); $("#c_nombre").focus(); $("#c_nombre").select();
+});
+for (const k of CC) $("#c_"+k).addEventListener("change", e => {
+  guardarPerfil(Object.assign({}, S.comite, { [k]: e.target.value.trim() })); pintar();
+});
+$("#p_borrar").onclick = () => { $("#p_conf").hidden = false; pintarPerfiles(); };
+$("#p_borrar_no").onclick = () => { $("#p_conf").hidden = true; pintarPerfiles(); };
+$("#p_borrar_si").onclick = async () => {
+  const pid = S.perfil;
+  if (S.perfiles.size < 2 || S.piezas.size) return;
+  if (S.db){ try { await S.db.doc("perfiles/"+pid).delete(); S.db.doc("chats/"+pid).delete().catch(() => {}); } catch (e){ falla(e); return; } }
+  S.perfiles.delete(pid); elegir(ordenPerfiles()[0].id); ver("hoy"); toast("Perfil borrado");
+};
+
+/* ---------- piezas fijas ---------- */
+function reglas(){ return Array.isArray(S.comite.repetidas) ? S.comite.repetidas.filter(r => r && r.id) : []; }
+function campo(label, el){ return h("label", { class:"campo" }, h("span", null, label), el); }
+function selec(id, ops, val){ const s = h("select", { id }, ops.map(o => h("option", { value:o[0] }, o[1]))); s.value = String(val == null ? "" : val); return s; }
+function reglaUI(r){
+  const set = (k, v) => guardarPerfil(Object.assign({}, S.comite, { repetidas: reglas().map(x => x.id === r.id ? Object.assign({}, x, { [k]: v }) : x) }));
+  const on = k => e => set(k, e.target.value.trim()), id = k => "r_"+r.id+"_"+k;
+  const inp = (k, type, ph) => { const i = h("input", { id:id(k), type:type || "text", placeholder:ph }); i.value = r[k] || ""; i.addEventListener("change", on(k)); return i; };
+  const sl = (k, ops, def) => { const s = selec(id(k), ops, r[k] == null ? def : r[k]); s.addEventListener("change", on(k)); return s; };
+  const idea = h("textarea", { id:id("idea"), rows:"2", placeholder:"Qué dice siempre esta pieza" }); idea.value = r.idea || ""; idea.addEventListener("change", on("idea"));
+  return h("div", { class:"regla" },
+    campo("Título", inp("titulo", "text", "Reunión del comité")),
+    h("div", { class:"dos" }, campo("Se publica cada", sl("dow", DIAS_L.map((d,i) => [String(i), d]), "3")), campo("Hora", inp("hora", "time"))),
+    h("div", { class:"dos" }, campo("Formato", sl("formato", FORMATOS.map(f => [f, f[0].toUpperCase()+f.slice(1)]), "post")), campo("Tipo", sl("tipo", TIPOS.map(t => [t, TIPO_N[t]]), "convocatoria"))),
+    campo("Idea", idea),
+    h("div", { class:"dos" }, campo("La actividad es", sl("ev_dias", [["","Sin actividad"],["0","Ese mismo día"],["1","Al día siguiente"],["2","2 días después"],["3","3 días después"],["4","4 días después"],["5","5 días después"],["6","6 días después"]], "")), campo("Hora de la actividad", inp("ev_hora", "time"))),
+    campo("Lugar de la actividad", inp("ev_lugar", "text", "Dirección del local")),
+    h("div", { class:"fila-btn" }, h("button", { type:"button", class:"btn peligro mini", onclick:() => { guardarPerfil(Object.assign({}, S.comite, { repetidas: reglas().filter(x => x.id !== r.id) })); pintarReglas(); } }, "Quitar")));
+}
+function pintarReglas(){
+  const box = $("#reglas"); box.textContent = ""; const rs = reglas();
+  for (const r of rs) box.append(reglaUI(r));
+  $("#r_crear").hidden = !rs.length;
+}
+$("#r_nueva").onclick = () => {
+  const r = { id:"r"+Date.now().toString(36), titulo:"", dow:"3", hora:"", formato:"post", tipo:"convocatoria", idea:"", ev_dias:"", ev_hora:"", ev_lugar: S.comite.local || "" };
+  guardarPerfil(Object.assign({}, S.comite, { repetidas: reglas().concat([r]) })); pintarReglas();
+  const el = document.getElementById("r_"+r.id+"_titulo"); if (el) el.focus();
+};
+$("#r_crear").onclick = () => generarFijas(true);
+let fijando = false;
+async function generarFijas(avisar){
+  if (fijando) return; fijando = true;
+  const t = hoy(), fin = sumar(t, 21); let n = 0;
+  try {
+    for (const [pid, pf] of [...S.perfiles]){
+      const rs = Array.isArray(pf.repetidas) ? pf.repetidas : []; if (!rs.length) continue;
+      let cambio = false; const nuevas = [];
+      for (const r of rs){
+        if (!r || !r.id || !String(r.titulo || "").trim()){ nuevas.push(r); continue; }
+        for (let d = esFecha(r.hasta) && r.hasta >= t ? sumar(r.hasta, 1) : t; d <= fin; d = sumar(d, 1)){
+          if (aFecha(d).getDay() !== Number(r.dow)) continue;
+          const id = "fija-"+r.id+"-"+d;
+          if (S.todas.has(id)) continue;
+          await crear({ fecha:d, hora:r.hora, formato:r.formato, tipo:r.tipo, titulo:r.titulo, idea:r.idea, regla:r.id,
+            ev_fecha: r.ev_dias === "" || r.ev_dias == null ? "" : sumar(d, Number(r.ev_dias) || 0), ev_hora:r.ev_hora, ev_lugar:r.ev_lugar }, pid, id);
+          n++;
+        }
+        if (r.hasta !== fin){ cambio = true; nuevas.push(Object.assign({}, r, { hasta:fin })); } else nuevas.push(r);
+      }
+      if (cambio) await guardarPerfil(Object.assign({}, S.perfiles.get(pid) || pf, { repetidas:nuevas }), pid);
+    }
+    if (n) toast(n === 1 ? "Se creó 1 pieza fija" : "Se crearon "+n+" piezas fijas");
+    else if (avisar) toast("Las próximas 3 semanas ya están creadas");
+  } catch (e){ falla(e); }
+  finally { fijando = false; }
+}
+
+/* ---------- arranque ---------- */
+function iaLista(){
+  const on = !!S.sample;
+  $("#caja_plan").hidden = !on; $("#chat_no").hidden = on; $("#chat_form").hidden = !on; $("#chat_sug").hidden = !on || S.turns.length > 0;
+  if (S.abierta) $("#d_ia").hidden = !on;
+  pintarHoy(); pintarMes();
+}
+function listo(){ S.ready = S.r1 && S.r2; if (S.ready && !S.fijas){ S.fijas = true; generarFijas(false); } }
+function modoLocal(){
+  S.local = true; S.db = null; S.solo = !(window.claude && typeof window.claude.use === "function");
+  if (S.solo) cargarLocal();
+  S.ready = true; sincPerfiles();
+  if (!S.fijas){ S.fijas = true; generarFijas(false); }
+}
+async function arrancar(){
+  pintar(); iaLista();
+  const c = window.claude;
+  if (!c || typeof c.use !== "function"){ modoLocal(); return; }
+  c.use("sample").then(async s => { S.sample = s; if (s){ try { const l = await s.limits(); S.tools = !!(l && l.tools); } catch (e){} } iaLista(); });
+  const db = await c.use("db");
+  if (!db){ modoLocal(); return; }
+  S.db = db;
+  db.collection("piezas").onSnapshot(snap => {
+    S.todas = new Map(snap.docs.map(d => [d.id, limpia(d.data() || {})])); S.r1 = true; listo(); filtrar(); pintar();
+  }, () => { modoLocal(); });
+  db.collection("perfiles").onSnapshot(snap => {
+    S.perfiles = new Map(snap.docs.map(d => [d.id, Object.assign({}, d.data())])); S.r2 = true; sincPerfiles(); listo(); pintar();
+  }, () => { modoLocal(); });
+}
+window.RedesApp = { crear, ver, abrir, cambiar };
+arrancar();
+})();
+</script>
+<script>
+if ("serviceWorker" in navigator) window.addEventListener("load", function(){ navigator.serviceWorker.register("sw.js").catch(function(){}); });
+</script>
+</body>
+</html>
